@@ -1,17 +1,23 @@
 import React, { Component } from "react";
 import Colors from "../styles/colors";
-import { StyleSheet, Text, View, Image, TouchableHighlight } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableHighlight
+} from "react-native";
 import colors from "../styles/colors";
 import Icon from "react-native-vector-icons/FontAwesome";
 import RoundedButton from "../components/buttons/RoundedButton";
 
 export default class LoggedOut extends Component {
   onFacebookPress() {
-    alert('Facebook button pressed');
+    alert("Facebook button pressed");
   }
 
   onCreateAccountPress() {
-    alert('Create Account button pressed');
+    alert("Create Account button pressed");
   }
 
   render() {
@@ -70,7 +76,7 @@ const styles = StyleSheet.create({
   },
   facebookButtonIcon: {
     color: colors.green01,
-    position: 'relative',
+    position: "relative",
     left: 20,
     zIndex: 8
   }
