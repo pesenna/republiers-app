@@ -11,16 +11,16 @@ import {
 import colors from "../styles/colors";
 
 import InputField from "../components/form/InputField";
-import NextArrowButton from '../components/buttons/NextArrowButton';
+import NextArrowButton from "../components/buttons/NextArrowButton";
 
 export default class Login extends Component {
   handleNextButton() {
-      alert('Next Button pressed')
+    alert("Next Button pressed");
   }
 
   render() {
     return (
-      <KeyboardAvoidingView style={styles.wrapper}>
+      <KeyboardAvoidingView style={styles.wrapper} behavior="padding">
         <View style={styles.scrollViewWrapper}>
           <ScrollView style={styles.scrollView}>
             <Text style={styles.loginHeader}>Log in</Text>
@@ -44,7 +44,7 @@ export default class Login extends Component {
             />
           </ScrollView>
           <View style={styles.nextButton}>
-            <NextArrowButton handleOnPress={this.handleNextButton} />
+            <NextArrowButton handleNextButton={this.handleNextButton} />
           </View>
         </View>
       </KeyboardAvoidingView>
@@ -75,8 +75,8 @@ const styles = StyleSheet.create({
     marginBottom: 40
   },
   nextButton: {
-      alignItems: 'flex-end',
-      right: 20,
-      bottom: 20
+    alignItems: "flex-end",
+    right: 20,
+    bottom: 20
   }
 });
