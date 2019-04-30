@@ -57,11 +57,10 @@ export default class Login extends Component {
   }
 
   handleEmailChange(email) {
+    this.setState({ emailAddress: email });
     this.setState({ formValid: true });
 
     const emailCheckRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-    this.setState({ emailAddress: email });
 
     if (emailCheckRegex.test(email)) {
       this.setState({ validEmail: true });
@@ -107,7 +106,6 @@ export default class Login extends Component {
             <InputField
               labelText="EMAIL ADDRESS"
               labelTextSize={14}
-              labelColor={colors.white}
               textColor={colors.white}
               borderBottomColor={colors.white}
               inputType="email"
@@ -119,7 +117,6 @@ export default class Login extends Component {
             <InputField
               labelText="PASSWORD"
               labelTextSize={14}
-              labelColor={colors.white}
               textColor={colors.white}
               borderBottomColor={colors.white}
               inputType="password"

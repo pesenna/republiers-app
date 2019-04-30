@@ -43,7 +43,6 @@ export default class InputField extends Component {
     const {
       labelText,
       labelTextSize,
-      labelColor,
       textColor,
       borderBottomColor,
       inputType,
@@ -56,7 +55,7 @@ export default class InputField extends Component {
     const { secureInput, scaleCheckmarkValue } = this.state;
     
     const fontSize = labelTextSize || 14;
-    const color = labelColor || colors.white;
+    const color = textColor || colors.white;
     const inputColor = textColor || colors.white;
     const borderBottom = borderBottomColor || "transparent";
     const keyboardType = inputType === "email" ? "email-address" : "default";
@@ -110,7 +109,6 @@ InputField.propTypes = {
   labelText: PropTypes.string.isRequired,
   inputType: PropTypes.string.isRequired,
   labelTextSize: PropTypes.number,
-  labelColor: PropTypes.string,
   textColor: PropTypes.string,
   borderBottomColor: PropTypes.string,
   customStyle: PropTypes.object,
