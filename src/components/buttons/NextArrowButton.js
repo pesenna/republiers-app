@@ -15,6 +15,7 @@ export default class NextArrowButton extends Component {
       <TouchableHighlight
         style={[opacityStyle, styles.button]}
         onPress={handleNextButton}
+        disabled={disabled}
       >
         <Icon
           name="angle-right"
