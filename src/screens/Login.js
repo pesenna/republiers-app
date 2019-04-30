@@ -13,6 +13,7 @@ import colors from "../styles/colors";
 import InputField from "../components/form/InputField";
 import NextArrowButton from "../components/buttons/NextArrowButton";
 import Notification from "../components/Notification";
+import Loader from "../components/Loader";
 
 export default class Login extends Component {
   constructor(props) {
@@ -22,7 +23,8 @@ export default class Login extends Component {
       formValid: true,
       validEmail: false,
       emailAddress: "",
-      validPassword: false
+      validPassword: false,
+      loadingVisible: false
     };
 
     this.handleNextButton = this.handleNextButton.bind(this);
@@ -33,16 +35,21 @@ export default class Login extends Component {
   }
 
   handleNextButton() {
-    // TODO: Validar informações de login
-    if (
-      this.state.emailAddress === "teste@teste.com" &&
-      this.state.validPassword
-    ) {
-      this.setState({ formValid: true });
-      alert("success");
-    } else {
-      this.setState({ formValid: false });
-    }
+    this.setState({ loadingVisible: true });
+
+    setTimeout(() => {
+      // TODO: Validar informações de login
+      if (
+        this.state.emailAddress === "teste@teste.com" &&
+        this.state.validPassword
+      ) {
+        this.setState({ formValid: true });
+      } else {
+        this.setState({ formValid: false });
+      }
+
+      this.setState({ loadingVisible: false });
+    }, 2000);
   }
 
   handleCloseNotification() {
@@ -50,7 +57,7 @@ export default class Login extends Component {
   }
 
   handleEmailChange(email) {
-    this.setState({formValid: true});
+    this.setState({ formValid: true });
 
     const emailCheckRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -64,7 +71,7 @@ export default class Login extends Component {
   }
 
   handlePasswordChange(password) {
-    this.setState({formValid: true});
+    this.setState({ formValid: true });
 
     if (password.length > 4) {
       this.setState({ validPassword: true });
@@ -84,7 +91,7 @@ export default class Login extends Component {
   }
 
   render() {
-    const { formValid } = this.state;
+    const { formValid, loadingVisible, validEmail, validPassword } = this.state;
     const showNotification = formValid ? false : true;
     const background = formValid ? colors.green01 : colors.darkOrange;
     const notificationMarginTop = showNotification ? 0 : -100;
@@ -106,6 +113,8 @@ export default class Login extends Component {
               inputType="email"
               customStyle={{ marginBottom: 30 }}
               onChangeText={this.handleEmailChange}
+              showCheckmark={validEmail}
+              autoFocus={true}
             />
             <InputField
               labelText="PASSWORD"
@@ -116,6 +125,7 @@ export default class Login extends Component {
               inputType="password"
               customStyle={{ marginBottom: 30 }}
               onChangeText={this.handlePasswordChange}
+              showCheckmark={validPassword}
             />
           </ScrollView>
           <View style={styles.nextButton}>
@@ -139,6 +149,7 @@ export default class Login extends Component {
             />
           </View>
         </View>
+        <Loader animationType="fade" modalVisible={loadingVisible} />
       </KeyboardAvoidingView>
     );
   }
@@ -173,6 +184,6 @@ const styles = StyleSheet.create({
   notificationWrapper: {
     position: "absolute",
     bottom: 0,
-    width: "100%",
+    width: "100%"
   }
 });
