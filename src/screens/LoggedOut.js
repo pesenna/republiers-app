@@ -5,7 +5,8 @@ import {
   Text,
   View,
   Image,
-  TouchableHighlight
+  TouchableHighlight,
+  ScrollView
 } from "react-native";
 import colors from "../styles/colors";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -20,9 +21,13 @@ export default class LoggedOut extends Component {
     alert("Create Account button pressed");
   }
 
+  onMoreOptionsPress() {
+    alert("More options button pressed");
+  }
+
   render() {
     return (
-      <View style={styles.wrapper}>
+      <ScrollView style={styles.wrapper}>
         <View style={styles.welcomeWrapper}>
           <Image source={require("../img/logo.png")} style={styles.logo} />
           <Text style={styles.welcomeText}>Welcome to Republiers.</Text>
@@ -30,7 +35,6 @@ export default class LoggedOut extends Component {
             text="Continue with Facebook"
             textColor={colors.green01}
             background={colors.white}
-            handleOnPress={this.onFacebookPress}
             icon={
               <Icon
                 name="facebook"
@@ -38,14 +42,45 @@ export default class LoggedOut extends Component {
                 style={styles.facebookButtonIcon}
               />
             }
+            handleOnPress={this.onFacebookPress}
           />
           <RoundedButton
             text="Create Account"
             textColor={colors.white}
             handleOnPress={this.onCreateAccountPress}
           />
+
+          <TouchableHighlight
+            style={styles.moreOptionsButton}
+            onPress={this.onMoreOptionsPress}
+          >
+            <Text style={styles.moreOptionsButtonText}>More options</Text>
+          </TouchableHighlight>
+          <View style={styles.termsAndConditions}>
+            <Text style={styles.termsText}>
+              By tapping Continue, Create Account or More
+            </Text>
+            <Text style={styles.termsText}>{" options,"}</Text>
+            <Text style={styles.termsText}>{"I agree to Republiers' "}</Text>
+            <TouchableHighlight style={styles.linkButton}>
+              <Text style={styles.termsText}>Terms of Service</Text>
+            </TouchableHighlight>
+            <Text style={styles.termsText}>,</Text>
+            <TouchableHighlight style={styles.linkButton}>
+              <Text style={styles.termsText}>Payments Terms of Service</Text>
+            </TouchableHighlight>
+            <Text style={styles.termsText}>,</Text>
+            <TouchableHighlight style={styles.linkButton}>
+              <Text style={styles.termsText}>Privacy Policy</Text>
+            </TouchableHighlight>
+            <Text style={styles.termsText}>, and</Text>
+            <TouchableHighlight style={styles.linkButton}>
+              <Text style={styles.termsText}>Nondiscrimination Policy</Text>
+            </TouchableHighlight>
+            <Text style={styles.termsText}>.</Text>
+          </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }
@@ -79,5 +114,27 @@ const styles = StyleSheet.create({
     position: "relative",
     left: 20,
     zIndex: 8
+  },
+  moreOptionsButton: {
+    marginTop: 10
+  },
+  moreOptionsButtonText: {
+    color: colors.white,
+    fontSize: 16
+  },
+  termsAndConditions: {
+    flexWrap: "wrap",
+    alignItems: "flex-start",
+    flexDirection: "row",
+    marginTop: 30
+  },
+  termsText: {
+    color: colors.white,
+    fontSize: 13,
+    fontWeight: "600"
+  },
+  linkButton: {
+    borderBottomWidth: 1,
+    borderBottomColor: colors.white
   }
 });
