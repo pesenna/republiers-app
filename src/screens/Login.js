@@ -12,6 +12,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { ActionCreators } from "../redux/actions";
 
+import { transparentHeaderStyle } from "../styles/navigation";
 import colors from "../styles/colors";
 
 import InputField from "../components/form/InputField";
@@ -20,6 +21,12 @@ import Notification from "../components/Notification";
 import Loader from "../components/Loader";
 
 class Login extends Component {
+
+  static navigationOptions = ({ navigation }) => ({
+    headerStyle: transparentHeaderStyle,
+    headerTintColor: colors.white
+  });
+
   constructor(props) {
     super(props);
 

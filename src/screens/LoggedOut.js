@@ -10,10 +10,14 @@ import {
 import colors from "../styles/colors";
 import Icon from "react-native-vector-icons/FontAwesome";
 import RoundedButton from "../components/buttons/RoundedButton";
-import { transparentHeaderStyle } from '../styles/navigation';
+import NavBarButton from "../components/buttons/NavBarButton";
+import { transparentHeaderStyle } from "../styles/navigation";
 
 export default class LoggedOut extends Component {
   static navigationOptions = ({ navigation }) => ({
+    headerRight: (
+      <NavBarButton location="right" color={colors.white} text="Login" handleButtonPress={() => navigation.navigate('Login')} />
+    ),
     headerStyle: transparentHeaderStyle,
     headerTintColor: colors.white
   });
