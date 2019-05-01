@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Colors from "../styles/colors";
 import {
   StyleSheet,
   Text,
@@ -11,8 +10,14 @@ import {
 import colors from "../styles/colors";
 import Icon from "react-native-vector-icons/FontAwesome";
 import RoundedButton from "../components/buttons/RoundedButton";
+import { transparentHeaderStyle } from '../styles/navigation';
 
 export default class LoggedOut extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    headerStyle: transparentHeaderStyle,
+    headerTintColor: colors.white
+  });
+
   onFacebookPress() {
     alert("Facebook button pressed");
   }
