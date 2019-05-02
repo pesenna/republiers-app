@@ -23,7 +23,7 @@ export default class NoResults extends Component {
           </Text>
         </ScrollView>
         <View style={styles.footer}>
-          <TouchableOpacity style={styles.findHomesButton}>
+          <TouchableOpacity style={styles.findHomesButton} activeOpacity={0.7}>
             <Text style={styles.findHomesButtonText}>Find homes</Text>
           </TouchableOpacity>
         </View>
