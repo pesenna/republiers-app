@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { PropTypes } from "prop-types";
 import Icon from "react-native-vector-icons/FontAwesome";
 import {
   View,
@@ -10,10 +9,10 @@ import {
   Image,
   StyleSheet
 } from "react-native";
-import colors from "../../styles/colors";
+import colors from "../../../styles/colors";
 
-import HeartButton from "../../components/buttons/HeartButton";
-import Stars from "../../components/Stars";
+import HeartButton from "../../../components/buttons/HeartButton";
+import Stars from "../../../components/Stars";
 
 export default class Listing extends Component {
   constructor(props) {
