@@ -123,7 +123,8 @@ const styles = StyleSheet.create({
     color: colors.green01,
     position: "relative",
     left: 20,
-    zIndex: 8
+    zIndex: 8,
+    marginTop: -3
   },
   moreOptionsButton: {
     marginTop: 10
