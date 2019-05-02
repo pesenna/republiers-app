@@ -6,6 +6,10 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import { NavigationActions } from "react-navigation";
 import { View, Text, TouchableHighlight, StyleSheet } from "react-native";
 
+const navigateToTabsAction = NavigationActions.navigate({
+  routeName: "LoggedIn"
+});
+
 export default class TurnOnNotifications extends Component {
   static navigationOptions = () => ({
     headerLeft: null,
@@ -13,7 +17,47 @@ export default class TurnOnNotifications extends Component {
     gestureEnabled: false
   });
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      pressedNotifyButton: false,
+      pressedSkipButton: false
+    };
+
+    this.handleNotifyButtonShowUnderlay = this.handleNotifyButtonShowUnderlay.bind(
+      this
+    );
+    this.handleNotifyButtonHideUnderlay = this.handleNotifyButtonHideUnderlay.bind(
+      this
+    );
+    this.handleSkipButtonShowUnderlay = this.handleSkipButtonShowUnderlay.bind(
+      this
+    );
+    this.handleSkipButtonHideUnderlay = this.handleSkipButtonHideUnderlay.bind(
+      this
+    );
+  }
+
+  handleNotifyButtonShowUnderlay() {
+    this.setState({ pressedNotifyButton: true });
+  }
+
+  handleNotifyButtonHideUnderlay() {
+    this.setState({ pressedNotifyButton: false });
+  }
+
+  handleSkipButtonShowUnderlay() {
+    this.setState({ pressedSkipButton: true });
+  }
+
+  handleSkipButtonHideUnderlay() {
+    this.setState({ pressedSkipButton: false });
+  }
+
   render() {
+    const { pressedNotifyButton, pressedSkipButton } = this.state;
+
     return (
       <View style={styles.wrapper}>
         <View style={styles.content}>
@@ -24,7 +68,19 @@ export default class TurnOnNotifications extends Component {
             important account activity
           </Text>
           <TouchableHighlight
-            style={[{ backgroundColor: colors.green01, width: 160 }, styles.button]}
+            style={[
+              {
+                backgroundColor: pressedNotifyButton
+                  ? colors.green02
+                  : colors.green01,
+                width: 160
+              },
+              styles.button
+            ]}
+            onPress={() => this.props.navigation.dispatch(navigateToTabsAction)}
+            underlayColor={colors.green02}
+            onShowUnderlay={this.handleNotifyButtonShowUnderlay}
+            onHideUnderlay={this.handleNotifyButtonHideUnderlay}
           >
             <Text style={[{ color: colors.white }, styles.buttonText]}>
               Yes, notify me
@@ -32,9 +88,20 @@ export default class TurnOnNotifications extends Component {
           </TouchableHighlight>
           <TouchableHighlight
             style={[
-              { borderColor: colors.green01, borderWidth: 2, width: 100 },
+              {
+                backgroundColor: pressedSkipButton
+                  ? colors.gray01
+                  : 'transparent',
+                borderColor: colors.green01,
+                borderWidth: 2,
+                width: 100
+              },
               styles.button
             ]}
+            onPress={() => this.props.navigation.dispatch(navigateToTabsAction)}
+            underlayColor={colors.gray01}
+            onShowUnderlay={this.handleSkipButtonShowUnderlay}
+            onHideUnderlay={this.handleSkipButtonHideUnderlay}
           >
             <Text style={[{ color: colors.green01 }, styles.buttonText]}>
               Skip
@@ -81,5 +148,11 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     alignSelf: "center"
-  },
+  }
 });
+
+TurnOnNotifications.propTypes = {
+  navigation: PropTypes.shape({
+    dispatch: PropTypes.func,
+  }),
+};
