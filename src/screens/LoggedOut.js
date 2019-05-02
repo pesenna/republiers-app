@@ -15,11 +15,12 @@ import { transparentHeaderStyle } from "../styles/navigation";
 
 export default class LoggedOut extends Component {
   static navigationOptions = ({ navigation }) => ({
+    headerStyle: transparentHeaderStyle,
+    headerTintColor: colors.white,
+
     headerRight: (
       <NavBarButton location="right" color={colors.white} text="Login" handleButtonPress={() => navigation.navigate('Login')} />
     ),
-    headerStyle: transparentHeaderStyle,
-    headerTintColor: colors.white
   });
 
   onFacebookPress() {
