@@ -1,0 +1,7 @@
+
+Todo:
+  ☐ Inbox screen must have ALERTS (like 'Fulano liked your republic') and MESSAGES (in-app chat)
+  ☐ Push notifications (ENABLE after login)
+
+ToTest:
+  ☐ More than one user connected ([push] notifications & chat)
