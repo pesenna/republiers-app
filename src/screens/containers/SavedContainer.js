@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
+import NoResults from "./saved/NoResults";
+import colors from "../../styles/colors";
 
 export default class SavedContainer extends Component {
   static navigationOptions = {
-    tabBarLabel: 'SAVED',
+    tabBarLabel: "SAVED",
     tabBarIcon: ({ tintColor }) => (
       <Icon name="ios-heart-empty" size={25} color={tintColor} />
     )
@@ -13,7 +15,7 @@ export default class SavedContainer extends Component {
   render() {
     return (
       <View style={styles.wrapper}>
-        <Text>Saved Container</Text>
+        <NoResults />
       </View>
     );
   }
@@ -21,7 +23,7 @@ export default class SavedContainer extends Component {
 
 const styles = StyleSheet.create({
   wrapper: {
-    display: 'flex',
-    padding: 50
+    display: "flex",
+    backgroundColor: colors.white
   }
 });

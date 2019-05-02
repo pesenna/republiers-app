@@ -4,10 +4,7 @@ import {
   StyleSheet,
   TouchableHighlight,
   Image,
-  View,
-  Text
 } from "react-native";
-import colors from "../../styles/colors";
 
 export default class Categories extends Component {
   get Categories() {

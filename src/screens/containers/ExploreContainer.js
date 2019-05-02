@@ -4,8 +4,8 @@ import Icon from "react-native-vector-icons/Ionicons";
 import colors from "../../styles/colors";
 
 import SearchBar from "../../components/SearchBar";
-import Categories from "../../components/explore/Categories";
-import Listings from "../../components/explore/Listings";
+import Categories from "./explore/Categories";
+import Listings from "./explore/Listings";
 
 import categoriesList from "../../data/categories";
 import listings from "../../data/listings";
