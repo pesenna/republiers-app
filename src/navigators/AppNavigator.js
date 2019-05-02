@@ -6,6 +6,7 @@ import { addNavigationHelpers, StackNavigator } from "react-navigation";
 import LoggedOut from "../screens/LoggedOut";
 import Login from "../screens/Login";
 import ForgotPassword from "../screens/ForgotPassword";
+import TurnOnNotifications from '../screens/TurnOnNotifications';
 import LoggedIn from '../screens/LoggedIn';
 
 export const AppNavigator = StackNavigator({
@@ -13,6 +14,7 @@ export const AppNavigator = StackNavigator({
   Login: { screen: Login },
   ForgotPassword: { screen: ForgotPassword },
   LoggedIn: { screen: LoggedIn },
+  TurnOnNotifications: { screen: TurnOnNotifications },
 });
 
 const AppWithNavigationState = ({ dispatch, nav, listener }) => (
