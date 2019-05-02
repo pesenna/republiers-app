@@ -40,8 +40,10 @@ export default class Notification extends Component {
   }
 
   render() {
-    const { type, firstLine, secondLine, showNotification } = this.props;
+    const { type, firstLine, secondLine, showNotification, typeTextColor } = this.props;
     const { positionValue } = this.state;
+
+    const color = typeTextColor || colors.darkOrange;
 
     showNotification
       ? this.animateNotification(0)
@@ -52,7 +54,7 @@ export default class Notification extends Component {
         style={[{ transform: [{ translateY: positionValue }] }, styles.wrapper]}
       >
         <View style={styles.notificationContent}>
-          <Text style={styles.typeText}>{type}</Text>
+          <Text style={[{ color }, styles.typeText]}>{type}</Text>
           <Text style={styles.messageText}>{firstLine}</Text>
           <Text style={styles.messageText}>{secondLine}</Text>
         </View>
@@ -70,6 +72,7 @@ export default class Notification extends Component {
 Notification.propTypes = {
   showNotification: PropTypes.bool.isRequired,
   type: PropTypes.string,
+  typeTextColor: PropTypes.string.isRequired,
   firstLine: PropTypes.string,
   secondLine: PropTypes.string,
   handleCloseNotification: PropTypes.func
@@ -88,7 +91,6 @@ const styles = StyleSheet.create({
     alignItems: "flex-start"
   },
   typeText: {
-    color: colors.darkOrange,
     marginRight: 5,
     fontSize: 14,
     marginBottom: 2
