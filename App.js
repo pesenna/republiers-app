@@ -3,15 +3,14 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import store from "./src/redux/store";
 
-import LoggedOut from "./src/screens/LoggedOut";
-import Login from "./src/screens/Login";
-import ForgotPassword from "./src/screens/ForgotPassword";
+import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
+import AppNavigationState from './src/navigators/AppNavigator';
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Login />
+        <AppNavigationState listener={createReduxBoundAddListener('root')} />
       </Provider>
     );
   }
