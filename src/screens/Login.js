@@ -21,7 +21,6 @@ import Notification from "../components/Notification";
 import Loader from "../components/Loader";
 
 class Login extends Component {
-
   static navigationOptions = ({ navigation }) => ({
     headerStyle: transparentHeaderStyle,
     headerTintColor: colors.white
@@ -35,7 +34,7 @@ class Login extends Component {
       validEmail: false,
       emailAddress: "",
       validPassword: false,
-      password: '',
+      password: "",
       loadingVisible: false
     };
 
@@ -50,16 +49,17 @@ class Login extends Component {
     const { emailAddress, password } = this.state;
     this.setState({ loadingVisible: true });
 
+    const { navigate } = this.props.navigation;
+
     setTimeout(() => {
       // TODO: Validar informações de login
 
       if (this.props.login(emailAddress, password)) {
-        this.setState({ formValid: true });
+        this.setState({ formValid: true,  loadingVisible: false });
+        navigate('LoggedIn');
       } else {
-        this.setState({ formValid: false });
+        this.setState({ formValid: false,  loadingVisible: false });
       }
-
-      this.setState({ loadingVisible: false });
     }, 2000);
   }
 
@@ -81,7 +81,7 @@ class Login extends Component {
   }
 
   handlePasswordChange(password) {
-    this.setState({ password: password});
+    this.setState({ password: password });
     this.setState({ formValid: true });
 
     if (password.length > 4) {
