@@ -19,11 +19,15 @@ import InputField from "../components/form/InputField";
 import NextArrowButton from "../components/buttons/NextArrowButton";
 import Notification from "../components/Notification";
 import Loader from "../components/Loader";
+import NavBarButton from '../components/buttons/NavBarButton'
 
 class Login extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerStyle: transparentHeaderStyle,
-    headerTintColor: colors.white
+    headerTintColor: colors.white,
+
+    headerRight: <NavBarButton location="right" color={colors.white} text="Forgot Password" handleButtonPress={() => navigation.navigate('ForgotPassword')}/>,
+    headerLeft: <NavBarButton location="left" icon={<Icon name="angle-left" color={colors.white} size={30} />} handleButtonPress={() => navigation.goBack()} />,
   });
 
   constructor(props) {

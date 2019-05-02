@@ -3,10 +3,20 @@ import { View, Text, KeyboardAvoidingView, StyleSheet } from "react-native";
 import colors from "../styles/colors";
 import InputField from "../components/form/InputField";
 import Notification from "../components/Notification";
+import { transparentHeaderStyle } from "../styles/navigation";
 import NextArrowButton from "../components/buttons/NextArrowButton";
+import NavBarButton from "../components/buttons/NavBarButton";
+import Icon from 'react-native-vector-icons/FontAwesome'
 import Loader from "../components/Loader";
 
 export default class ForgotPassword extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    headerStyle: transparentHeaderStyle,
+    headerTintColor: colors.white,
+
+    headerLeft: <NavBarButton location="left" icon={<Icon name="angle-left" color={colors.white} size={30} />} handleButtonPress={() => navigation.goBack()} />,
+  });
+
   constructor(props) {
     super(props);
 
