@@ -1,4 +1,4 @@
-import { TabNavigator } from "react-navigation";
+import { TabNavigator, TabBarBottom } from "react-navigation";
 import ExploreContainer from "../screens/containers/ExploreContainer";
 import InboxContainer from "../screens/containers/InboxContainer";
 import ProfileContainer from "../screens/containers/ProfileContainer";
@@ -21,7 +21,9 @@ const LoggedInTabNavigator = TabNavigator(
         marginBottom: 5
       },
       activeTintColor: colors.pink
-    }
+    },
+    tabBarComponent: TabBarBottom,
+    tabBarPosition: "bottom"
   }
 );
 

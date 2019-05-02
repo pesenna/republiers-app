@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { PropTypes } from "prop-types";
 import colors from "../../styles/colors";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { TouchableHighlight, StyleSheet } from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
 
 export default class NextArrowButton extends Component {
   render() {
@@ -12,10 +12,11 @@ export default class NextArrowButton extends Component {
       : { backgroundColor: "rgba(255,255,255,0.6)" };
 
     return (
-      <TouchableHighlight
+      <TouchableOpacity
         style={[opacityStyle, styles.button]}
         onPress={handleNextButton}
         disabled={disabled}
+        activeOpacity={0.7}
       >
         <Icon
           name="angle-right"
@@ -23,7 +24,7 @@ export default class NextArrowButton extends Component {
           size={32}
           style={styles.icon}
         />
-      </TouchableHighlight>
+      </TouchableOpacity>
     );
   }
 }

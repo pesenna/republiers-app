@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import { View, Text, KeyboardAvoidingView, StyleSheet } from "react-native";
+import { View, Text, KeyboardAvoidingView, StyleSheet, ScrollView } from "react-native";
 import colors from "../styles/colors";
 import InputField from "../components/form/InputField";
 import Notification from "../components/Notification";
 import { transparentHeaderStyle } from "../styles/navigation";
 import NextArrowButton from "../components/buttons/NextArrowButton";
 import NavBarButton from "../components/buttons/NavBarButton";
-import Icon from 'react-native-vector-icons/FontAwesome'
+import Icon from "react-native-vector-icons/FontAwesome";
 import Loader from "../components/Loader";
 
 export default class ForgotPassword extends Component {
@@ -14,7 +14,13 @@ export default class ForgotPassword extends Component {
     headerStyle: transparentHeaderStyle,
     headerTintColor: colors.white,
 
-    headerLeft: <NavBarButton location="left" icon={<Icon name="angle-left" color={colors.white} size={30} />} handleButtonPress={() => navigation.goBack()} />,
+    headerLeft: (
+      <NavBarButton
+        location="left"
+        icon={<Icon name="angle-left" color={colors.white} size={30} />}
+        handleButtonPress={() => navigation.goBack()}
+      />
+    )
   });
 
   constructor(props) {
@@ -80,26 +86,30 @@ export default class ForgotPassword extends Component {
     const notificationMarginTop = showNotification ? 0 : -100;
 
     return (
-      <KeyboardAvoidingView style={[{backgroundColor: background}, styles.wrapper]} behavior="padding">
+      <KeyboardAvoidingView
+        style={[{ backgroundColor: background }, styles.wrapper]}
+        behavior="padding"
+      >
         <View style={styles.form}>
-          <Text style={styles.forgotPasswordHeading}>
-            Forgot your password?
-          </Text>
-          <Text style={styles.forgotPasswordSubheading}>
-            Enter your email to find your account.
-          </Text>
-          <InputField
-            labelText="EMAIL ADDRESS"
-            labelTextSize={14}
-            textColor={colors.white}
-            borderBottomColor={colors.white}
-            inputType="email"
-            customStyle={{ marginBottom: 30 }}
-            onChangeText={this.handleEmailChange}
-            showCheckmark={validEmail}
-          />
+          <ScrollView>
+            <Text style={styles.forgotPasswordHeading}>
+              Forgot your password?
+            </Text>
+            <Text style={styles.forgotPasswordSubheading}>
+              Enter your email to find your account.
+            </Text>
+            <InputField
+              labelText="EMAIL ADDRESS"
+              labelTextSize={14}
+              textColor={colors.white}
+              borderBottomColor={colors.white}
+              inputType="email"
+              customStyle={{ marginBottom: 30 }}
+              onChangeText={this.handleEmailChange}
+              showCheckmark={validEmail}
+            />
+          </ScrollView>
         </View>
-        <View>
         <View style={styles.nextButton}>
           <NextArrowButton
             handleNextButton={this.handleNextButton}
@@ -107,20 +117,19 @@ export default class ForgotPassword extends Component {
           />
         </View>
         <View
-            style={[
-              styles.notificationWrapper,
-              { marginBottom: notificationMarginTop }
-            ]}
-          >
-            <Notification
-              showNotification={showNotification}
-              type="Error"
-              firstLine="No account exists for the requested "
-              secondLine="email address "
-              handleCloseNotification={this.handleCloseNotification}
-            />
-          </View>
-          </View>
+          style={[
+            styles.notificationWrapper,
+            { marginBottom: notificationMarginTop }
+          ]}
+        >
+          <Notification
+            showNotification={showNotification}
+            type="Error"
+            firstLine="No account exists for the requested "
+            secondLine="email address "
+            handleCloseNotification={this.handleCloseNotification}
+          />
+        </View>
         <Loader animationType="fade" modalVisible={loadingVisible} />
       </KeyboardAvoidingView>
     );
@@ -130,13 +139,18 @@ export default class ForgotPassword extends Component {
 const styles = StyleSheet.create({
   wrapper: {
     display: "flex",
-    flex: 1,
+    flex: 1
   },
   form: {
     marginTop: 90,
     paddingLeft: 20,
     paddingRight: 20,
-    flex: 1
+    flex: 1,
+    padding: 0,
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0
   },
   forgotPasswordHeading: {
     fontSize: 28,
