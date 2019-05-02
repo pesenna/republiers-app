@@ -3,7 +3,7 @@ import {
   View,
   Text,
   ScrollView,
-  TouchableHighlight,
+  TouchableOpacity,
   StyleSheet
 } from "react-native";
 import colors from "../../../styles/colors";
@@ -23,9 +23,9 @@ export default class NoResults extends Component {
           </Text>
         </ScrollView>
         <View style={styles.footer}>
-          <TouchableHighlight style={styles.findHomesButton}>
+          <TouchableOpacity style={styles.findHomesButton}>
             <Text style={styles.findHomesButtonText}>Find homes</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       </View>
     );

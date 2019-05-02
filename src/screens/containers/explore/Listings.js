@@ -3,7 +3,6 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import {
   View,
   Text,
-  TouchableHighlight,
   TouchableOpacity,
   ScrollView,
   Image,
@@ -40,7 +39,7 @@ export default class Listing extends Component {
 
     return listings.map((listing, index) => {
       return (
-        <TouchableHighlight style={styles.card} key={`listing-${index}`}>
+        <TouchableOpacity style={styles.card} key={`listing-${index}`} activeOpacity={0.7}>
           <View>
             {showAddToFavorites ? (
               <View style={styles.addToFavoriteButton}>
@@ -70,7 +69,7 @@ export default class Listing extends Component {
               <Stars votes={listing.stars} size={10} color={colors.green02} />
             ) : null}
           </View>
-        </TouchableHighlight>
+        </TouchableOpacity>
       );
     });
   }

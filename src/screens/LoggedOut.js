@@ -4,7 +4,7 @@ import {
   Text,
   View,
   Image,
-  TouchableHighlight,
+  TouchableOpacity,
   ScrollView
 } from "react-native";
 import colors from "../styles/colors";
@@ -60,33 +60,33 @@ export default class LoggedOut extends Component {
             handleOnPress={this.onCreateAccountPress}
           />
 
-          <TouchableHighlight
+          <TouchableOpacity
             style={styles.moreOptionsButton}
             onPress={this.onMoreOptionsPress}
           >
             <Text style={styles.moreOptionsButtonText}>More options</Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
           <View style={styles.termsAndConditions}>
             <Text style={styles.termsText}>
               By tapping Continue, Create Account or More
             </Text>
             <Text style={styles.termsText}>{" options,"}</Text>
             <Text style={styles.termsText}>{"I agree to Republiers' "}</Text>
-            <TouchableHighlight style={styles.linkButton}>
+            <TouchableOpacity style={styles.linkButton}>
               <Text style={styles.termsText}>Terms of Service</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
             <Text style={styles.termsText}>,</Text>
-            <TouchableHighlight style={styles.linkButton}>
+            <TouchableOpacity style={styles.linkButton}>
               <Text style={styles.termsText}>Payments Terms of Service</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
             <Text style={styles.termsText}>,</Text>
-            <TouchableHighlight style={styles.linkButton}>
+            <TouchableOpacity style={styles.linkButton}>
               <Text style={styles.termsText}>Privacy Policy</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
             <Text style={styles.termsText}>, and</Text>
-            <TouchableHighlight style={styles.linkButton}>
+            <TouchableOpacity style={styles.linkButton}>
               <Text style={styles.termsText}>Nondiscrimination Policy</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
             <Text style={styles.termsText}>.</Text>
           </View>
         </View>
