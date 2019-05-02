@@ -4,7 +4,7 @@ import { transparentHeaderStyle } from "../styles/navigation";
 import colors from "../styles/colors";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { NavigationActions } from "react-navigation";
-import { View, Text, TouchableHighlight, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 const navigateToTabsAction = NavigationActions.navigate({
   routeName: "LoggedIn"
@@ -67,7 +67,7 @@ export default class TurnOnNotifications extends Component {
             We can let you know when someone messages you, or notify about other
             important account activity
           </Text>
-          <TouchableHighlight
+          <TouchableOpacity
             style={[
               {
                 backgroundColor: pressedNotifyButton
@@ -85,8 +85,8 @@ export default class TurnOnNotifications extends Component {
             <Text style={[{ color: colors.white }, styles.buttonText]}>
               Yes, notify me
             </Text>
-          </TouchableHighlight>
-          <TouchableHighlight
+          </TouchableOpacity>
+          <TouchableOpacity
             style={[
               {
                 backgroundColor: pressedSkipButton
@@ -106,7 +106,7 @@ export default class TurnOnNotifications extends Component {
             <Text style={[{ color: colors.green01 }, styles.buttonText]}>
               Skip
             </Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
         </View>
       </View>
     );
