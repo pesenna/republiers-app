@@ -1,9 +1,9 @@
 import { TabNavigator } from "react-navigation";
-import ExploreContainer from "../containers/ExporeContainer";
-import InboxContainer from "../containers/InboxContainer";
-import ProfileContainer from "../containers/ProfileContainer";
-import SavedContainer from "../containers/SavedContainer";
-import TripsContainer from "../containers/TripsContainer";
+import ExploreContainer from "../screens/containers/ExploreContainer";
+import InboxContainer from "../screens/containers/InboxContainer";
+import ProfileContainer from "../screens/containers/ProfileContainer";
+import SavedContainer from "../screens/containers/SavedContainer";
+import TripsContainer from "../screens/containers/TripsContainer";
 import colors from "../styles/colors";
 
 const LoggedInTabNavigator = TabNavigator(
