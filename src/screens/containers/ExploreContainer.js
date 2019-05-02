@@ -5,8 +5,10 @@ import colors from "../../styles/colors";
 
 import SearchBar from "../../components/SearchBar";
 import Categories from "../../components/explore/Categories";
+import Listings from "../../components/explore/Listings";
 
 import categoriesList from "../../data/categories";
+import listings from "../../data/listings";
 
 export default class ExploreContainer extends Component {
   static navigationOptions = {
@@ -15,6 +17,22 @@ export default class ExploreContainer extends Component {
       <Icon name="ios-search" size={25} color={tintColor} />
     )
   };
+
+  renderListings() {
+    return listings.map((listing, index) => {
+      return (
+        <View
+        key={`listing-${index}`}>
+          <Listings 
+          key={`listing-item-${index}`}
+          title={listing.title}
+          boldTitle={listing.boldTitle}
+          listings={listing.listings}
+          showAddToFavorites={listing.showAddToFavorites}/>
+        </View>
+      );
+    });
+  }
 
   render() {
     return (
@@ -28,6 +46,7 @@ export default class ExploreContainer extends Component {
           <View style={styles.categories}>
             <Categories categories={categoriesList} />
           </View>
+          {this.renderListings()}
         </ScrollView>
       </View>
     );
@@ -40,7 +59,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white
   },
   scrollView: {
-    paddingTop: 110
+    paddingTop: 120
   },
   scrollViewContent: {
     paddingBottom: 80
