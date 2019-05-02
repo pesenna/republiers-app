@@ -158,6 +158,7 @@ class Login extends Component {
             <Notification
               showNotification={showNotification}
               type="Error"
+              typeTextColor={colors.darkOrange}
               firstLine="Those credentials don't look right. "
               secondLine="Please try again "
               handleCloseNotification={this.handleCloseNotification}
