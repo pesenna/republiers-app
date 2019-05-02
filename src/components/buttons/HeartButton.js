@@ -30,6 +30,7 @@ export default class HeartButton extends Component {
       <TouchableOpacity
         onPress={this.addToFavorite}
         style={styles.favoriteButton}
+        activeOpacity={1}
       >
         <View>
           <Icon name={iconName} color={iconColor} size={19} />
