@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 export default class ProfileContainer extends Component {
   static navigationOptions = {
-    tabBarLabel: 'PROFILE',
+    tabBarLabel: "PROFILE",
     tabBarIcon: ({ tintColor }) => (
       <Icon name="ios-contact" size={25} color={tintColor} />
     )
@@ -21,7 +21,7 @@ export default class ProfileContainer extends Component {
 
 const styles = StyleSheet.create({
   wrapper: {
-    display: 'flex',
+    display: "flex",
     padding: 50
   }
 });

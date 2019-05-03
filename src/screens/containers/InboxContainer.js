@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 export default class InboxContainer extends Component {
   static navigationOptions = {
-    tabBarLabel: 'INBOX',
+    tabBarLabel: "INBOX",
     tabBarIcon: ({ tintColor }) => (
       <Icon name="ios-archive" size={25} color={tintColor} />
     )
@@ -21,7 +21,7 @@ export default class InboxContainer extends Component {
 
 const styles = StyleSheet.create({
   wrapper: {
-    display: 'flex',
+    display: "flex",
     padding: 50
   }
 });

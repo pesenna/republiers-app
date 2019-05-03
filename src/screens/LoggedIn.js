@@ -3,7 +3,7 @@ import { transparentHeaderStyle } from "../styles/navigation";
 import LoggedInTabNavigator from "../navigators/LoggedInTabNavigator";
 
 export default class LoggedIn extends Component {
-  static navigationOptions =() => ({
+  static navigationOptions = () => ({
     header: null,
     headerStyle: transparentHeaderStyle,
     gesturesEnabled: false

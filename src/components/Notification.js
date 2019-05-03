@@ -40,7 +40,13 @@ export default class Notification extends Component {
   }
 
   render() {
-    const { type, firstLine, secondLine, showNotification, typeTextColor } = this.props;
+    const {
+      type,
+      firstLine,
+      secondLine,
+      showNotification,
+      typeTextColor
+    } = this.props;
     const { positionValue } = this.state;
 
     const color = typeTextColor || colors.darkOrange;

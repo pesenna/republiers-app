@@ -8,11 +8,17 @@ export default class Loader extends Component {
     const { animationType, modalVisible } = this.props;
 
     return (
-      <Modal visible={modalVisible} animationType={animationType} transparent={true}>
+      <Modal
+        visible={modalVisible}
+        animationType={animationType}
+        transparent={true}
+      >
         <View style={styles.wrapper}>
           <View style={styles.loaderContainer}>
-            <Image style={styles.loaderImage}
-            source={require('../img/loading.gif')} />
+            <Image
+              style={styles.loaderImage}
+              source={require("../img/loading.gif")}
+            />
           </View>
         </View>
       </Modal>
@@ -40,9 +46,9 @@ const styles = StyleSheet.create({
     height: 90,
     backgroundColor: colors.white,
     borderRadius: 15,
-    position: 'absolute',
-    left: '50%',
-    top: '50%',
+    position: "absolute",
+    left: "50%",
+    top: "50%",
     marginLeft: -45,
     marginTop: -45
   },

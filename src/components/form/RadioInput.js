@@ -9,21 +9,18 @@ export default class RadioInput extends Component {
     super(props);
 
     this.state = {
-      scaleCheckmarkValue: new Animated.Value(0),
-    }
+      scaleCheckmarkValue: new Animated.Value(0)
+    };
 
     this.scaleCheckmark = this.scaleCheckmark.bind(this);
   }
 
   scaleCheckmark(value) {
-    Animated.timing(
-      this.state.scaleCheckmarkValue,
-      {
-        toValue: value,
-        duration: 400,
-        easing: Easing.easeOutBack,
-      }
-    ).start();
+    Animated.timing(this.state.scaleCheckmarkValue, {
+      toValue: value,
+      duration: 400,
+      easing: Easing.easeOutBack
+    }).start();
   }
 
   render() {
@@ -37,11 +34,11 @@ export default class RadioInput extends Component {
     } = this.props;
 
     const background = selected ? selectedBackgroundColor : backgroundColor;
-    const border = selected ? selectedBorderColor : borderColor
+    const border = selected ? selectedBorderColor : borderColor;
 
     const iconScale = this.state.scaleCheckmarkValue.interpolate({
       inputRange: [0, 0.5, 1],
-      outputRange: [0.01, 1.6, 1],
+      outputRange: [0.01, 1.6, 1]
     });
     const scaleValue = selected ? 1 : 0;
     this.scaleCheckmark(scaleValue);
@@ -53,13 +50,11 @@ export default class RadioInput extends Component {
           styles.wrapper
         ]}
       >
-      <Animated.View style={[{transform: [{scale: iconScale}]}, styles.iconWrapper]}>
-        <Icon
-          name="md-checkmark"
-          size={20}
-          color={iconColor}
-        />
-      </Animated.View>
+        <Animated.View
+          style={[{ transform: [{ scale: iconScale }] }, styles.iconWrapper]}
+        >
+          <Icon name="md-checkmark" size={20} color={iconColor} />
+        </Animated.View>
       </View>
     );
   }

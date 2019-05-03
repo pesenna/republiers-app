@@ -4,7 +4,7 @@ import Icon from "react-native-vector-icons/Ionicons";
 
 export default class TripsContainer extends Component {
   static navigationOptions = {
-    tabBarLabel: 'TRIPS',
+    tabBarLabel: "TRIPS",
     tabBarIcon: ({ tintColor }) => (
       <Icon name="logo-ionic" size={25} color={tintColor} />
     )
@@ -21,7 +21,7 @@ export default class TripsContainer extends Component {
 
 const styles = StyleSheet.create({
   wrapper: {
-    display: 'flex',
+    display: "flex",
     padding: 50
   }
 });

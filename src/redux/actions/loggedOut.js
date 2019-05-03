@@ -17,5 +17,5 @@ export function setLoggedInState(loggedInState) {
   return {
     type: types.SET_LOGGED_IN_STATE,
     loggedInState
-  }
+  };
 }

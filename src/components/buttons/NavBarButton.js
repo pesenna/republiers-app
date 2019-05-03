@@ -4,7 +4,14 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 export default class NavBarButton extends Component {
   render() {
-    const { location, text, icon, color, handleButtonPress, disabled } = this.props;
+    const {
+      location,
+      text,
+      icon,
+      color,
+      handleButtonPress,
+      disabled
+    } = this.props;
 
     const buttonDisabled = disabled || false;
 
@@ -12,10 +19,14 @@ export default class NavBarButton extends Component {
       location === "right" ? { marginRight: 20 } : { marginLeft: 20 };
 
     let content;
-    if(text) {
-      content = <Text style={[{color}, marginPosition, styles.buttonText]}>{text}</Text>
+    if (text) {
+      content = (
+        <Text style={[{ color }, marginPosition, styles.buttonText]}>
+          {text}
+        </Text>
+      );
     } else if (icon) {
-      content = <View style={marginPosition}>{icon}</View>
+      content = <View style={marginPosition}>{icon}</View>;
     }
 
     return (
@@ -32,8 +43,8 @@ NavBarButton.propTypes = {
   handleButtonPress: PropTypes.func.isRequired,
   location: PropTypes.string,
   color: PropTypes.string,
-  disabled: PropTypes.bool,
-}
+  disabled: PropTypes.bool
+};
 
 const styles = StyleSheet.create({
   buttonText: {

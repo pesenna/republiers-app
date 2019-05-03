@@ -26,18 +26,19 @@ export default class LoggedOut extends Component {
         location="right"
         color={colors.white}
         text="Login"
-        handleButtonPress={() => { navigation.navigate("Login"); }}
+        handleButtonPress={() => {
+          navigation.navigate("Login");
+        }}
       />
     )
   });
 
-  constructor(props)
-  {
+  constructor(props) {
     super(props);
 
     this.state = {
       loadingFacebook: true,
-      buttonsEnabled: false,
+      buttonsEnabled: false
     };
 
     this.onFacebookPress = this.onFacebookPress.bind(this);
@@ -51,16 +52,17 @@ export default class LoggedOut extends Component {
   checkIfUserIsLoggedIn() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        this.props.navigation.navigate("LoggedIn");;
-      }
-      else {
-        this.setState({loadingFacebook: false, buttonsEnabled: true});
+        alert("iria pra home");
+        //this.props.navigation.navigate("LoggedIn");;
+        this.setState({ loadingFacebook: false, buttonsEnabled: true });
+      } else {
+        this.setState({ loadingFacebook: false, buttonsEnabled: true });
       }
     });
   }
 
   async onFacebookPress() {
-    this.setState({loadingFacebook: true});
+    this.setState({ loadingFacebook: true });
 
     const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(
       "371081163503525",
@@ -76,19 +78,9 @@ export default class LoggedOut extends Component {
         .catch(error => {
           console.log(error);
         });
-
-        firebase.auth().onAuthStateChanged(user => {
-          if (user) {
-            this.setState({loadingFacebook: false});
-            this.props.navigation.navigate("LoggedIn");
-          }
-
-          // TODO: Redirect to create user with Facebook details
-          
-        });
+    } else {
+      this.setState({ loadingFacebook: false });
     }
-    
-    this.setState({loadingFacebook: false});
   }
 
   onCreateAccountPress() {
@@ -100,7 +92,7 @@ export default class LoggedOut extends Component {
   }
 
   render() {
-    const {loadingFacebook, buttonsEnabled} = this.state;
+    const { loadingFacebook, buttonsEnabled } = this.state;
     return (
       <ScrollView style={styles.wrapper}>
         <View style={styles.welcomeWrapper}>

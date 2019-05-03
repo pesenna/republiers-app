@@ -71,5 +71,5 @@ HeartButton.propTypes = {
   selectedColor: PropTypes.string.isRequired,
   itemId: PropTypes.number,
   onPress: PropTypes.func,
-  selected: PropTypes.bool,
+  selected: PropTypes.bool
 };

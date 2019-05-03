@@ -1,16 +1,15 @@
 import React, { Component } from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { ScrollView, StyleSheet, TouchableOpacity, Image } from "react-native";
 
 export default class Categories extends Component {
   get Categories() {
     const { categories } = this.props;
     return categories.map((category, index) => (
-      <TouchableOpacity style={styles.card} key={`category-item-${index}`} activeOpacity={0.7}>
+      <TouchableOpacity
+        style={styles.card}
+        key={`category-item-${index}`}
+        activeOpacity={0.7}
+      >
         <Image source={category.photo} style={styles.image} />
       </TouchableOpacity>
     ));

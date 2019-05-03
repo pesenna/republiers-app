@@ -19,15 +19,28 @@ import InputField from "../components/form/InputField";
 import NextArrowButton from "../components/buttons/NextArrowButton";
 import Notification from "../components/Notification";
 import Loader from "../components/Loader";
-import NavBarButton from '../components/buttons/NavBarButton'
+import NavBarButton from "../components/buttons/NavBarButton";
 
 class Login extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerStyle: transparentHeaderStyle,
     headerTintColor: colors.white,
 
-    headerRight: <NavBarButton location="right" color={colors.white} text="Forgot Password" handleButtonPress={() => navigation.navigate('ForgotPassword')}/>,
-    headerLeft: <NavBarButton location="left" icon={<Icon name="angle-left" color={colors.white} size={30} />} handleButtonPress={() => navigation.goBack()} />,
+    headerRight: (
+      <NavBarButton
+        location="right"
+        color={colors.white}
+        text="Forgot Password"
+        handleButtonPress={() => navigation.navigate("ForgotPassword")}
+      />
+    ),
+    headerLeft: (
+      <NavBarButton
+        location="left"
+        icon={<Icon name="angle-left" color={colors.white} size={30} />}
+        handleButtonPress={() => navigation.goBack()}
+      />
+    )
   });
 
   constructor(props) {
@@ -59,10 +72,10 @@ class Login extends Component {
       // TODO: Validate with Firebase
 
       if (this.props.login(emailAddress, password)) {
-        this.setState({ formValid: true,  loadingVisible: false });
-        navigate('TurnOnNotifications');
+        this.setState({ formValid: true, loadingVisible: false });
+        navigate("TurnOnNotifications");
       } else {
-        this.setState({ formValid: false,  loadingVisible: false });
+        this.setState({ formValid: false, loadingVisible: false });
       }
     }, 2000);
   }
@@ -183,7 +196,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    bottom: 0,
+    bottom: 0
   },
   scrollView: {
     paddingLeft: 30,

@@ -1,5 +1,3 @@
-import * as LoggedOut from './loggedOut';
+import * as LoggedOut from "./loggedOut";
 
-export const ActionCreators = Object.assign({},
-  LoggedOut,
-);
+export const ActionCreators = Object.assign({}, LoggedOut);
