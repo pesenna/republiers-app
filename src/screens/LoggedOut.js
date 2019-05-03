@@ -43,6 +43,7 @@ export default class LoggedOut extends Component {
 
     this.onFacebookPress = this.onFacebookPress.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.handleUserConnected = this.handleUserConnected.bind(this);
   }
 
   componentDidMount() {
@@ -52,8 +53,8 @@ export default class LoggedOut extends Component {
   checkIfUserIsLoggedIn() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        alert("iria pra home");
-        //this.props.navigation.navigate("LoggedIn");;
+        //alert("iria pra home");
+        this.props.navigation.navigate("LoggedIn");;
         this.setState({ loadingFacebook: false, buttonsEnabled: true });
       } else {
         this.setState({ loadingFacebook: false, buttonsEnabled: true });
@@ -61,12 +62,47 @@ export default class LoggedOut extends Component {
     });
   }
 
+  handleUserConnected(data) {
+    // TODO: Validar se o uid existe como 'raiz' e usar dados básicos do firebase
+
+    if (data.additionalUserInfo.isNewUser) {
+      firebase
+        .database()
+        .ref("/users/" + data.user.uid)
+        .set({
+          uid: data.user.uid,
+          name: data.user.displayName,
+          picture: data.user.photoURL,
+          email: data.user.email,
+          created_at: Date.now(),
+          last_logged_in: Date.now()
+        });
+    } else {
+      firebase
+        .database()
+        .ref("/users/" + data.user.uid)
+        .update({
+          uid: data.user.uid,
+          name: data.user.displayName,
+          picture: data.user.photoURL,
+          email: data.user.email,
+          created_at: Date.now(),
+          last_logged_in: Date.now()
+        })
+        .then(this.checkIfUserIsLoggedIn());
+    }
+  }
+
+  handleErrorSignIn(error) {
+    console.log(error);
+  }
+
   async onFacebookPress() {
     this.setState({ loadingFacebook: true });
 
     const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(
       "371081163503525",
-      { permissions: ["public_profile"] }
+      { permissions: ["public_profile", "email"] }
     );
 
     if (type == "success") {
@@ -75,8 +111,11 @@ export default class LoggedOut extends Component {
       firebase
         .auth()
         .signInAndRetrieveDataWithCredential(credential)
+        .then(data => {
+          this.handleUserConnected(data);
+        })
         .catch(error => {
-          console.log(error);
+          this.handleErrorSignIn(error);
         });
     } else {
       this.setState({ loadingFacebook: false });
