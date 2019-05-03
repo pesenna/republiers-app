@@ -22,12 +22,41 @@ export default class ExploreContainer extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      favouriteListings: []
+    };
+
+    this.onCreateListClose = this.onCreateListClose.bind(this);
+    this.renderListings = this.renderListings.bind(this);
     this.handleAddToFavorites = this.handleAddToFavorites.bind(this);
   }
 
-  handleAddToFavorites() {
+  handleAddToFavorites(listing) {
     const { navigate } = this.props.navigation;
-    navigate('CreateList');
+    let { favouriteListings } = this.state;
+
+    const index = favouriteListings.indexOf(listing.id);
+    if (index > -1) {
+      favouriteListings = favouriteListings.filter(item => item !== listing.id);
+      this.setState({ favouriteListings });
+    } else {
+      navigate("CreateList", {
+        listing,
+        onCreateListClose: this.onCreateListClose
+      });
+    }
+  }
+
+  onCreateListClose(listingId, listCreated) {
+    let { favouriteListings } = this.state;
+
+    if (listCreated) {
+      favouriteListings.push(listingId);
+    } else {
+      favouriteListings = favouriteListings.filter(item => item !== listingId);
+    }
+
+    this.setState({ favouriteListings });
   }
 
   renderListings() {
@@ -41,6 +70,7 @@ export default class ExploreContainer extends Component {
             listings={listing.listings}
             showAddToFavorites={listing.showAddToFavorites}
             handleAddToFavorites={this.handleAddToFavorites}
+            favouriteListings={this.state.favouriteListings}
           />
         </View>
       );

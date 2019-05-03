@@ -15,6 +15,10 @@ export default class HeartButton extends Component {
     this.addToFavorite = this.addToFavorite.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ addedToFavorite: nextProps.selected });
+  }
+
   addToFavorite() {
     const { onPress } = this.props;
 
@@ -66,5 +70,6 @@ HeartButton.propTypes = {
   color: PropTypes.string.isRequired,
   selectedColor: PropTypes.string.isRequired,
   itemId: PropTypes.number,
-  onPress: PropTypes.func
+  onPress: PropTypes.func,
+  selected: PropTypes.bool,
 };

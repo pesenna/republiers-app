@@ -36,9 +36,10 @@ export default class Listing extends Component {
   }
 
   renderListings() {
-    const { listings, showAddToFavorites, handleAddToFavorites } = this.props;
+    const { listings, showAddToFavorites, handleAddToFavorites, favouriteListings } = this.props;
 
     return listings.map((listing, index) => {
+
       return (
         <TouchableOpacity
           style={styles.card}
@@ -51,7 +52,10 @@ export default class Listing extends Component {
                 <HeartButton
                   color={colors.white}
                   selectedColor={colors.pink}
-                  onPress={handleAddToFavorites}
+                  selected={favouriteListings.indexOf(listing.id) > -1}
+                  onPress={() => {
+                    handleAddToFavorites(listing);
+                  }}
                 />
               </View>
             ) : null}
@@ -117,7 +121,8 @@ Listing.propTypes = {
   boldTitle: PropTypes.bool,
   listings: PropTypes.array.isRequired,
   showAddToFavorites: PropTypes.bool,
-  handleAddToFavorites: PropTypes.func
+  handleAddToFavorites: PropTypes.func,
+  favouriteListings: PropTypes.array,
 };
 
 const styles = StyleSheet.create({
