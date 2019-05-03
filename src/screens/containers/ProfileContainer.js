@@ -20,8 +20,6 @@ export default class ProfileContainer extends Component {
 
   handleSignOut() {
     firebase.auth().signOut();
-
-    //this.props.navigation.navigate('LoggedOut');
   }
 
   render() {
@@ -38,7 +36,6 @@ export default class ProfileContainer extends Component {
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   wrapper: {

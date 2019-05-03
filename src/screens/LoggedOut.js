@@ -5,8 +5,9 @@ import {
   View,
   Image,
   TouchableOpacity,
-  ScrollView,
+  ScrollView
 } from "react-native";
+import { NavigationActions } from "react-navigation";
 import colors from "../styles/colors";
 import Icon from "react-native-vector-icons/FontAwesome";
 import RoundedButton from "../components/buttons/RoundedButton";
@@ -20,6 +21,8 @@ export default class LoggedOut extends Component {
     headerStyle: transparentHeaderStyle,
     headerTintColor: colors.white,
 
+    gesturesEnabled: false,
+    headerLeft: null,
     headerRight: (
       <NavBarButton
         location="right"
@@ -37,12 +40,14 @@ export default class LoggedOut extends Component {
 
     this.state = {
       loadingFacebook: true,
-      buttonsEnabled: false
+      buttonsEnabled: false,
+      wasLoggedIn: false
     };
 
     this.onFacebookPress = this.onFacebookPress.bind(this);
     this.componentDidMount = this.componentDidMount.bind(this);
     this.handleUserConnected = this.handleUserConnected.bind(this);
+    this.checkIfUserIsLoggedIn = this.checkIfUserIsLoggedIn.bind(this);
   }
 
   componentDidMount() {
@@ -52,9 +57,20 @@ export default class LoggedOut extends Component {
   checkIfUserIsLoggedIn() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
+        this.setState({ wasLoggedIn: true });
         this.handleUserConnected(user);
       } else {
         this.setState({ loadingFacebook: false, buttonsEnabled: true });
+
+        const { wasLoggedIn } = this.state;
+        if (wasLoggedIn) {
+          this.props.navigation.dispatch(
+            NavigationActions.reset({
+              index: 0,
+              actions: [NavigationActions.navigate({ routeName: "LoggedOut" })]
+            })
+          );
+        }
       }
     });
   }

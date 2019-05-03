@@ -3,8 +3,8 @@ Todo:
   ☐ Inbox screen must have ALERTS (like 'Fulano liked your republic') and MESSAGES (in-app chat)
   ☐ Push notifications (ENABLE after login)
   ☐ Fix fav button not unselect when not creating a list
-  ☐ On sign out redirect to LoggedOut
-  ☐ On signup, redirect to 'turnonnotifications' not home
+  ✔ On sign out redirect to LoggedOut @done(19-05-03 19:46)
+  ✔ On signup, redirect to 'turnonnotifications' not home @done(19-05-03 19:46)
 
   Screens:
     ☐ Create/Complete (when login with Facebook) account
