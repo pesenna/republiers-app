@@ -7,24 +7,139 @@ import {
   TouchableOpacity,
   ScrollView
 } from "react-native";
+import { NavigationActions } from "react-navigation";
 import colors from "../styles/colors";
 import Icon from "react-native-vector-icons/FontAwesome";
 import RoundedButton from "../components/buttons/RoundedButton";
 import NavBarButton from "../components/buttons/NavBarButton";
 import { transparentHeaderStyle } from "../styles/navigation";
 
+import firebase from "firebase";
+
 export default class LoggedOut extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerStyle: transparentHeaderStyle,
     headerTintColor: colors.white,
 
+    gesturesEnabled: false,
+    headerLeft: null,
     headerRight: (
-      <NavBarButton location="right" color={colors.white} text="Login" handleButtonPress={() => navigation.navigate('Login')} />
-    ),
+      <NavBarButton
+        location="right"
+        color={colors.white}
+        text="Login"
+        handleButtonPress={() => {
+          navigation.navigate("Login");
+        }}
+      />
+    )
   });
 
-  onFacebookPress() {
-    alert("Facebook button pressed");
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loadingFacebook: true,
+      buttonsEnabled: false,
+      wasLoggedIn: false
+    };
+
+    this.onFacebookPress = this.onFacebookPress.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
+    this.handleUserConnected = this.handleUserConnected.bind(this);
+    this.checkIfUserIsLoggedIn = this.checkIfUserIsLoggedIn.bind(this);
+  }
+
+  componentDidMount() {
+    this.checkIfUserIsLoggedIn();
+  }
+
+  checkIfUserIsLoggedIn() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.setState({ wasLoggedIn: true });
+        this.handleUserConnected(user);
+      } else {
+        this.setState({ loadingFacebook: false, buttonsEnabled: true });
+
+        const { wasLoggedIn } = this.state;
+        if (wasLoggedIn) {
+          this.props.navigation.dispatch(
+            NavigationActions.reset({
+              index: 0,
+              actions: [NavigationActions.navigate({ routeName: "LoggedOut" })]
+            })
+          );
+        }
+      }
+    });
+  }
+
+  handleUserConnected(user) {
+    firebase
+      .database()
+      .ref("/users/" + user.uid + "/uid")
+      .once("value", snapshot => {
+        if (!snapshot.exists()) {
+          firebase
+            .database()
+            .ref("/users/" + user.uid)
+            .set({
+              uid: user.uid,
+              name: user.displayName,
+              picture: user.photoURL,
+              email: user.email,
+              created_at: Date.now(),
+              last_logged_in: Date.now()
+            });
+
+          this.props.navigation.navigate("TurnOnNotifications");
+          this.setState({ loadingFacebook: false, buttonsEnabled: true });
+        } else {
+          firebase
+            .database()
+            .ref("/users/" + user.uid)
+            .update({
+              uid: user.uid,
+              name: user.displayName,
+              picture: user.photoURL,
+              email: user.email,
+              last_logged_in: Date.now()
+            });
+
+          this.props.navigation.navigate("LoggedIn");
+          this.setState({ loadingFacebook: false, buttonsEnabled: true });
+        }
+      });
+  }
+
+  handleErrorSignIn(error) {
+    console.log(error);
+  }
+
+  async onFacebookPress() {
+    this.setState({ loadingFacebook: true });
+
+    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(
+      "371081163503525",
+      { permissions: ["public_profile", "email"] }
+    );
+
+    if (type == "success") {
+      const credential = firebase.auth.FacebookAuthProvider.credential(token);
+
+      firebase
+        .auth()
+        .signInAndRetrieveDataWithCredential(credential)
+        .then(data => {
+          this.handleUserConnected(data);
+        })
+        .catch(error => {
+          this.handleErrorSignIn(error);
+        });
+    } else {
+      this.setState({ loadingFacebook: false });
+    }
   }
 
   onCreateAccountPress() {
@@ -36,6 +151,7 @@ export default class LoggedOut extends Component {
   }
 
   render() {
+    const { loadingFacebook, buttonsEnabled } = this.state;
     return (
       <ScrollView style={styles.wrapper}>
         <View style={styles.welcomeWrapper}>
@@ -52,12 +168,16 @@ export default class LoggedOut extends Component {
                 style={styles.facebookButtonIcon}
               />
             }
+            disabled={!buttonsEnabled}
+            loading={loadingFacebook}
             handleOnPress={this.onFacebookPress}
           />
           <RoundedButton
             text="Create Account"
             textColor={colors.white}
             handleOnPress={this.onCreateAccountPress}
+            disabled={!buttonsEnabled}
+            loading={false}
           />
 
           <TouchableOpacity

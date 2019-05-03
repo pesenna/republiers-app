@@ -10,7 +10,7 @@ import colors from "../styles/colors";
 export const ExploreTab = StackNavigator(
   {
     ExploreContainer: { screen: ExploreContainer },
-    CreateList: { screen: CreateList }
+    CreateList: { screen: CreateList },
   },
   { mode: "modal" }
 );
@@ -21,7 +21,7 @@ const LoggedInTabNavigator = TabNavigator(
     Saved: { screen: SavedContainer },
     Trips: { screen: TripsContainer },
     Inbox: { screen: InboxContainer },
-    Profile: { screen: ProfileContainer }
+    Profile: { screen: ProfileContainer },
   },
   {
     tabBarOptions: {

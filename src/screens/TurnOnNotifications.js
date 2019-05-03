@@ -91,7 +91,7 @@ export default class TurnOnNotifications extends Component {
               {
                 backgroundColor: pressedSkipButton
                   ? colors.gray01
-                  : 'transparent',
+                  : "transparent",
                 borderColor: colors.green01,
                 borderWidth: 2,
                 width: 100
@@ -153,6 +153,6 @@ const styles = StyleSheet.create({
 
 TurnOnNotifications.propTypes = {
   navigation: PropTypes.shape({
-    dispatch: PropTypes.func,
-  }),
+    dispatch: PropTypes.func
+  })
 };

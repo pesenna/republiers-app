@@ -8,7 +8,12 @@ export default class SearchBar extends Component {
     return (
       <View style={styles.wrapper}>
         <View style={styles.searchContainer}>
-          <Icon name="ios-search" size={20} color={colors.gray02} style={styles.searchIcon} />
+          <Icon
+            name="ios-search"
+            size={20}
+            color={colors.gray02}
+            style={styles.searchIcon}
+          />
           <Text style={styles.textInput}>Try "IFSP"</Text>
         </View>
       </View>
@@ -42,14 +47,14 @@ const styles = StyleSheet.create({
     marginRight: 21
   },
   searchIcon: {
-    position: 'absolute',
+    position: "absolute",
     left: 18,
     top: 9
   },
   textInput: {
-    display: 'flex',
+    display: "flex",
     marginTop: 12,
     marginLeft: 45,
-    color: colors.gray02,
+    color: colors.gray02
   }
 });

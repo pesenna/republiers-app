@@ -85,11 +85,9 @@ export default class ForgotPassword extends Component {
   handleCloseNotification() {
     const { formValid } = this.state;
 
-    if(formValid)
-    {
+    if (formValid) {
       const { navigate } = this.props.navigation;
-      navigate('Login');
-
+      navigate("Login");
     }
     this.setState({ formValid: true, showNotification: false });
   }

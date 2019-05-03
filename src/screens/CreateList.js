@@ -87,12 +87,11 @@ export default class CreateList extends Component {
                 borderBottomColor={colors.gray06}
                 labelTextSize={16}
                 labelTextWeight="400"
-                // TODO: Trocar placeholder -> valor da searchbox (default IFSP)
+                // TODO: Change placeholder -> searchbox value (default IFSP)
                 placeholder={title}
                 defaultValue={title}
                 inputType="text"
                 showCheckmark={false}
-                //autoFocus={true}
                 inputStyle={styles.inputStyle}
                 onChangeText={this.handleTitleChange}
               />

@@ -36,10 +36,14 @@ export default class Listing extends Component {
   }
 
   renderListings() {
-    const { listings, showAddToFavorites, handleAddToFavorites, favouriteListings } = this.props;
+    const {
+      listings,
+      showAddToFavorites,
+      handleAddToFavorites,
+      favouriteListings
+    } = this.props;
 
     return listings.map((listing, index) => {
-
       return (
         <TouchableOpacity
           style={styles.card}
@@ -122,7 +126,7 @@ Listing.propTypes = {
   listings: PropTypes.array.isRequired,
   showAddToFavorites: PropTypes.bool,
   handleAddToFavorites: PropTypes.func,
-  favouriteListings: PropTypes.array,
+  favouriteListings: PropTypes.array
 };
 
 const styles = StyleSheet.create({

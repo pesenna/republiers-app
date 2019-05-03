@@ -29,6 +29,11 @@ export default class RoundedButton extends Component {
     const opacityStyle = disabled || loading ? 0.5 : 1;
     const textOpacity = loading ? 0 : 1;
 
+    const loaderGif =
+      backgroundColor === "#ffffff"
+        ? require("../../img/loading.gif")
+        : require("../../img/whiteLoader.gif");
+
     return (
       <TouchableOpacity
         style={[
@@ -43,12 +48,11 @@ export default class RoundedButton extends Component {
           {iconLocation === "left" && !loading ? (
             <View style={{ opacity: opacityStyle }}>{icon}</View>
           ) : null}
-          {loading ?
-          <View style={styles.loaderContainer}>
-            <Image style={styles.loaderImage}
-            source={require('../../img/whiteLoader.gif')} />
-          </View>
-          : null}
+          {loading ? (
+            <View style={styles.loaderContainer}>
+              <Image style={styles.loaderImage} source={loaderGif} />
+            </View>
+          ) : null}
           <Text
             style={[
               {
@@ -110,20 +114,20 @@ const styles = StyleSheet.create({
     width: 90,
     height: 90,
     borderRadius: 15,
-    position: 'absolute',
-    left: '50%',
-    top: '50%',
+    position: "absolute",
+    left: "50%",
+    top: "50%",
     marginLeft: -45,
-    marginTop: -45,
+    marginTop: -45
   },
   loaderImage: {
-    position: 'absolute',
+    position: "absolute",
     width: 40,
     height: 40,
     borderRadius: 15,
-    left: '50%',
-    top: '50%',
+    left: "50%",
+    top: "50%",
     marginLeft: -20,
-    marginTop: -20,
+    marginTop: -20
   }
 });

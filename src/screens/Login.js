@@ -19,15 +19,30 @@ import InputField from "../components/form/InputField";
 import NextArrowButton from "../components/buttons/NextArrowButton";
 import Notification from "../components/Notification";
 import Loader from "../components/Loader";
-import NavBarButton from '../components/buttons/NavBarButton'
+import NavBarButton from "../components/buttons/NavBarButton";
+
+import firebase from "firebase";
 
 class Login extends Component {
   static navigationOptions = ({ navigation }) => ({
     headerStyle: transparentHeaderStyle,
     headerTintColor: colors.white,
 
-    headerRight: <NavBarButton location="right" color={colors.white} text="Forgot Password" handleButtonPress={() => navigation.navigate('ForgotPassword')}/>,
-    headerLeft: <NavBarButton location="left" icon={<Icon name="angle-left" color={colors.white} size={30} />} handleButtonPress={() => navigation.goBack()} />,
+    headerRight: (
+      <NavBarButton
+        location="right"
+        color={colors.white}
+        text="Forgot Password"
+        handleButtonPress={() => navigation.navigate("ForgotPassword")}
+      />
+    ),
+    headerLeft: (
+      <NavBarButton
+        location="left"
+        icon={<Icon name="angle-left" color={colors.white} size={30} />}
+        handleButtonPress={() => navigation.goBack()}
+      />
+    )
   });
 
   constructor(props) {
@@ -39,7 +54,7 @@ class Login extends Component {
       emailAddress: "",
       validPassword: false,
       password: "",
-      loadingVisible: false
+      loadingVisible: false,
     };
 
     this.handleNextButton = this.handleNextButton.bind(this);
@@ -47,24 +62,30 @@ class Login extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.toggleNextButtonState = this.toggleNextButtonState.bind(this);
+    this.login = this.login.bind(this);
+  }
+
+  login(emailAddress, password) {
+    try {
+      firebase
+        .auth()
+        .signInAndRetrieveDataWithEmailAndPassword(emailAddress, password)
+        .then(() => {
+          this.setState({ formValid: true, loadingVisible: false });
+        })
+        .catch(() => {
+          this.setState({ formValid: false, loadingVisible: false });
+        });
+    } catch {
+      this.setState({ formValid: false, loadingVisible: false });
+    }
   }
 
   handleNextButton() {
     const { emailAddress, password } = this.state;
     this.setState({ loadingVisible: true });
 
-    const { navigate } = this.props.navigation;
-
-    setTimeout(() => {
-      // TODO: Validar informações de login
-
-      if (this.props.login(emailAddress, password)) {
-        this.setState({ formValid: true,  loadingVisible: false });
-        navigate('TurnOnNotifications');
-      } else {
-        this.setState({ formValid: false,  loadingVisible: false });
-      }
-    }, 2000);
+    this.login(emailAddress.toLowerCase(), password);
   }
 
   handleCloseNotification() {
@@ -183,7 +204,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     top: 0,
-    bottom: 0,
+    bottom: 0
   },
   scrollView: {
     paddingLeft: 30,
