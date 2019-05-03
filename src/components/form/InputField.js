@@ -48,15 +48,26 @@ export default class InputField extends Component {
       onChangeText,
       showCheckmark,
       autoFocus,
-      autoCapitalize
+      autoCapitalize,
+      labelTextWeight,
+      inputStyle,
+      placeholder
     } = this.props;
     const { secureInput, scaleCheckmarkValue } = this.state;
 
     const fontSize = labelTextSize || 14;
+    const fontWeight = labelTextWeight || "700";
+
     const color = textColor || colors.white;
     const inputColor = textColor || colors.white;
     const borderBottom = borderBottomColor || "transparent";
     const keyboardType = inputType === "email" ? "email-address" : "default";
+
+    let customInputStyle = inputStyle || {};
+
+    if (!inputStyle || (inputStyle && !inputStyle.paddingBottom)) {
+      customInputStyle.paddingBottom = 5;
+    }
 
     const iconScale = scaleCheckmarkValue.interpolate({
       inputRange: [0, 0.5, 1],
@@ -67,7 +78,9 @@ export default class InputField extends Component {
 
     return (
       <View style={[customStyle, styles.wrapper]}>
-        <Text style={[{ color, fontSize }, styles.label]}>{labelText}</Text>
+        <Text style={[{ fontWeight, color, fontSize }, styles.label]}>
+          {labelText}
+        </Text>
 
         {inputType === "password" ? (
           <TouchableOpacity
@@ -93,6 +106,7 @@ export default class InputField extends Component {
           autoCorrect={false}
           style={[
             { color: inputColor, borderBottomColor: borderBottom },
+            customInputStyle,
             styles.inputField
           ]}
           secureTextEntry={secureInput}
@@ -102,6 +116,7 @@ export default class InputField extends Component {
           autoFocus={autoFocus}
           autoCapitalize={autoCapitalize}
           underlineColorAndroid="transparent"
+          placeholder={placeholder}
         />
       </View>
     );
@@ -118,7 +133,10 @@ InputField.propTypes = {
   OnChangeText: PropTypes.func,
   showCheckmark: PropTypes.bool.isRequired,
   autoFocus: PropTypes.bool,
-  autoCapitalize: PropTypes.bool
+  autoCapitalize: PropTypes.bool,
+  labelTextWeight: PropTypes.string,
+  inputStyle: PropTypes.object,
+  placeholder: PropTypes.string
 };
 
 const styles = StyleSheet.create({
@@ -126,13 +144,11 @@ const styles = StyleSheet.create({
     display: "flex"
   },
   label: {
-    fontWeight: "700",
     marginBottom: 20
   },
   inputField: {
     borderBottomWidth: 1,
-    paddingTop: 5,
-    paddingBottom: 5
+    paddingTop: 5
   },
   showButton: {
     position: "absolute",

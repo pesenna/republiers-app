@@ -8,6 +8,7 @@ import {
   Image,
   StyleSheet
 } from "react-native";
+import { PropTypes } from "prop-types";
 import colors from "../../../styles/colors";
 
 import HeartButton from "../../../components/buttons/HeartButton";
@@ -35,15 +36,23 @@ export default class Listing extends Component {
   }
 
   renderListings() {
-    const { listings, showAddToFavorites } = this.props;
+    const { listings, showAddToFavorites, handleAddToFavorites } = this.props;
 
     return listings.map((listing, index) => {
       return (
-        <TouchableOpacity style={styles.card} key={`listing-${index}`} activeOpacity={0.7}>
+        <TouchableOpacity
+          style={styles.card}
+          key={`listing-${index}`}
+          activeOpacity={0.7}
+        >
           <View>
             {showAddToFavorites ? (
               <View style={styles.addToFavoriteButton}>
-                <HeartButton color={colors.white} selectedColor={colors.pink} />
+                <HeartButton
+                  color={colors.white}
+                  selectedColor={colors.pink}
+                  onPress={handleAddToFavorites}
+                />
               </View>
             ) : null}
 
@@ -102,6 +111,14 @@ export default class Listing extends Component {
     );
   }
 }
+
+Listing.propTypes = {
+  title: PropTypes.string.isRequired,
+  boldTitle: PropTypes.bool,
+  listings: PropTypes.array.isRequired,
+  showAddToFavorites: PropTypes.bool,
+  handleAddToFavorites: PropTypes.func
+};
 
 const styles = StyleSheet.create({
   wrapper: {

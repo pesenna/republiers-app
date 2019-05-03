@@ -12,23 +12,36 @@ import listings from "../../data/listings";
 
 export default class ExploreContainer extends Component {
   static navigationOptions = {
+    header: null,
     tabBarLabel: "EXPLORE",
     tabBarIcon: ({ tintColor }) => (
       <Icon name="ios-search" size={25} color={tintColor} />
     )
   };
 
+  constructor(props) {
+    super(props);
+
+    this.handleAddToFavorites = this.handleAddToFavorites.bind(this);
+  }
+
+  handleAddToFavorites() {
+    const { navigate } = this.props.navigation;
+    navigate('CreateList');
+  }
+
   renderListings() {
     return listings.map((listing, index) => {
       return (
-        <View
-        key={`listing-${index}`}>
-          <Listings 
-          key={`listing-item-${index}`}
-          title={listing.title}
-          boldTitle={listing.boldTitle}
-          listings={listing.listings}
-          showAddToFavorites={listing.showAddToFavorites}/>
+        <View key={`listing-${index}`}>
+          <Listings
+            key={`listing-item-${index}`}
+            title={listing.title}
+            boldTitle={listing.boldTitle}
+            listings={listing.listings}
+            showAddToFavorites={listing.showAddToFavorites}
+            handleAddToFavorites={this.handleAddToFavorites}
+          />
         </View>
       );
     });
