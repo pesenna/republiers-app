@@ -28,6 +28,8 @@ export default class RoundedButton extends Component {
     const border = borderColor || colors.white;
     const opacityStyle = disabled || loading ? 0.5 : 1;
     const textOpacity = loading ? 0 : 1;
+    
+    const loaderGif = backgroundColor === '#ffffff' ? require('../../img/loading.gif') :  require('../../img/whiteLoader.gif');
 
     return (
       <TouchableOpacity
@@ -46,7 +48,7 @@ export default class RoundedButton extends Component {
           {loading ?
           <View style={styles.loaderContainer}>
             <Image style={styles.loaderImage}
-            source={require('../../img/whiteLoader.gif')} />
+            source={loaderGif} />
           </View>
           : null}
           <Text

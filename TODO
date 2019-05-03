@@ -4,6 +4,10 @@ Todo:
   ☐ Push notifications (ENABLE after login)
   ☐ Fix fav button not unselect when not creating a list
 
+  Screens:
+    ☐ Create/Complete (when login with Facebook) account
+    ☐ Republic details
+
 ToTest:
   ☐ More than one user connected ([push] notifications & chat)
 

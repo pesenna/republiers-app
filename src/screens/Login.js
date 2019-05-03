@@ -56,7 +56,7 @@ class Login extends Component {
     const { navigate } = this.props.navigation;
 
     setTimeout(() => {
-      // TODO: Validar informações de login
+      // TODO: Validate with Firebase
 
       if (this.props.login(emailAddress, password)) {
         this.setState({ formValid: true,  loadingVisible: false });

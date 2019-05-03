@@ -4,7 +4,9 @@ import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 export default class NavBarButton extends Component {
   render() {
-    const { location, text, icon, color, handleButtonPress } = this.props;
+    const { location, text, icon, color, handleButtonPress, disabled } = this.props;
+
+    const buttonDisabled = disabled || false;
 
     const marginPosition =
       location === "right" ? { marginRight: 20 } : { marginLeft: 20 };
@@ -17,7 +19,7 @@ export default class NavBarButton extends Component {
     }
 
     return (
-      <TouchableOpacity onPress={handleButtonPress}>
+      <TouchableOpacity onPress={handleButtonPress} disabled={buttonDisabled}>
         {content}
       </TouchableOpacity>
     );
@@ -30,6 +32,7 @@ NavBarButton.propTypes = {
   handleButtonPress: PropTypes.func.isRequired,
   location: PropTypes.string,
   color: PropTypes.string,
+  disabled: PropTypes.bool,
 }
 
 const styles = StyleSheet.create({

@@ -8,6 +8,10 @@ import { StatusBar } from 'react-native';
 import { createReduxBoundAddListener } from 'react-navigation-redux-helpers';
 import AppNavigationState from './src/navigators/AppNavigator';
 
+import * as firebase from 'firebase';
+import { firebaseConfig } from './config';
+firebase.initializeApp(firebaseConfig);
+
 export default class App extends Component {
   render() {
     StatusBar.setBarStyle('light-content');
