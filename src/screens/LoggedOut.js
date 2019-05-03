@@ -6,7 +6,6 @@ import {
   Image,
   TouchableOpacity,
   ScrollView,
-  Button
 } from "react-native";
 import colors from "../styles/colors";
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -53,44 +52,49 @@ export default class LoggedOut extends Component {
   checkIfUserIsLoggedIn() {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        //alert("iria pra home");
-        this.props.navigation.navigate("LoggedIn");;
-        this.setState({ loadingFacebook: false, buttonsEnabled: true });
+        this.handleUserConnected(user);
       } else {
         this.setState({ loadingFacebook: false, buttonsEnabled: true });
       }
     });
   }
 
-  handleUserConnected(data) {
-    // TODO: Validar se o uid existe como 'raiz' e usar dados básicos do firebase
+  handleUserConnected(user) {
+    firebase
+      .database()
+      .ref("/users/" + user.uid + "/uid")
+      .once("value", snapshot => {
+        if (!snapshot.exists()) {
+          firebase
+            .database()
+            .ref("/users/" + user.uid)
+            .set({
+              uid: user.uid,
+              name: user.displayName,
+              picture: user.photoURL,
+              email: user.email,
+              created_at: Date.now(),
+              last_logged_in: Date.now()
+            });
 
-    if (data.additionalUserInfo.isNewUser) {
-      firebase
-        .database()
-        .ref("/users/" + data.user.uid)
-        .set({
-          uid: data.user.uid,
-          name: data.user.displayName,
-          picture: data.user.photoURL,
-          email: data.user.email,
-          created_at: Date.now(),
-          last_logged_in: Date.now()
-        });
-    } else {
-      firebase
-        .database()
-        .ref("/users/" + data.user.uid)
-        .update({
-          uid: data.user.uid,
-          name: data.user.displayName,
-          picture: data.user.photoURL,
-          email: data.user.email,
-          created_at: Date.now(),
-          last_logged_in: Date.now()
-        })
-        .then(this.checkIfUserIsLoggedIn());
-    }
+          this.props.navigation.navigate("TurnOnNotifications");
+          this.setState({ loadingFacebook: false, buttonsEnabled: true });
+        } else {
+          firebase
+            .database()
+            .ref("/users/" + user.uid)
+            .update({
+              uid: user.uid,
+              name: user.displayName,
+              picture: user.photoURL,
+              email: user.email,
+              last_logged_in: Date.now()
+            });
+
+          this.props.navigation.navigate("LoggedIn");
+          this.setState({ loadingFacebook: false, buttonsEnabled: true });
+        }
+      });
   }
 
   handleErrorSignIn(error) {

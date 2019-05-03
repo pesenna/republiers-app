@@ -12,15 +12,33 @@ export default class ProfileContainer extends Component {
     )
   };
 
+  constructor(props) {
+    super(props);
+
+    this.handleSignOut = this.handleSignOut.bind(this);
+  }
+
+  handleSignOut() {
+    firebase.auth().signOut();
+
+    //this.props.navigation.navigate('LoggedOut');
+  }
+
   render() {
     return (
       <View style={styles.wrapper}>
         <Text>Profile Container</Text>
-        <Button title='Sign out' onPress={() => {firebase.auth().signOut().then(this.props.navigation.navigate('LoggedOut'));}}></Button>
+        <Button
+          title="Sign out"
+          onPress={() => {
+            this.handleSignOut();
+          }}
+        />
       </View>
     );
   }
 }
+
 
 const styles = StyleSheet.create({
   wrapper: {

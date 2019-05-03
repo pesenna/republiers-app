@@ -71,13 +71,13 @@ class Login extends Component {
         .auth()
         .signInAndRetrieveDataWithEmailAndPassword(emailAddress, password)
         .then(() => {
-          this.setState({formValid: true, loadingVisible: false});
+          this.setState({ formValid: true, loadingVisible: false });
         })
         .catch(() => {
-          this.setState({formValid: false, loadingVisible: false});
+          this.setState({ formValid: false, loadingVisible: false });
         });
     } catch {
-      this.setState({formValid: false, loadingVisible: false});
+      this.setState({ formValid: false, loadingVisible: false });
     }
   }
 
