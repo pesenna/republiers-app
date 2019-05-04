@@ -48,6 +48,7 @@ export default class LoggedOut extends Component {
     this.componentDidMount = this.componentDidMount.bind(this);
     this.handleUserConnected = this.handleUserConnected.bind(this);
     this.checkIfUserIsLoggedIn = this.checkIfUserIsLoggedIn.bind(this);
+    this.onCreateAccountPress = this.onCreateAccountPress.bind(this);
   }
 
   componentDidMount() {
@@ -143,7 +144,7 @@ export default class LoggedOut extends Component {
   }
 
   onCreateAccountPress() {
-    alert("Create Account button pressed");
+    this.props.navigation.navigate("CreateAccount");
   }
 
   onMoreOptionsPress() {
