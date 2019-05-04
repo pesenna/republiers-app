@@ -18,7 +18,7 @@ function configureStore(initialState) {
     applyMiddleware(thunkMiddleware, navigationMiddleware, loggerMiddleware)
   );
 
-  return createStore(reducer, initialState, enhancer);
+  return createStore(reducer, initialState);
 }
 
 export default configureStore({});
