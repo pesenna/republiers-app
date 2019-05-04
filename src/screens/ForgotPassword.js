@@ -14,6 +14,7 @@ import NextArrowButton from "../components/buttons/NextArrowButton";
 import NavBarButton from "../components/buttons/NavBarButton";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Loader from "../components/Loader";
+import firebase from "firebase";
 
 export default class ForgotPassword extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -61,15 +62,14 @@ export default class ForgotPassword extends Component {
 
   handleNextButton() {
     this.setState({ loadingVisible: true });
-    setTimeout(() => {
-      if (this.state.emailAddress === "wrong@email.com") {
-        this.setState({ formValid: false });
-      } else {
-        this.setState({ formValid: true });
-      }
 
-      this.setState({ loadingVisible: false, showNotification: true });
-    }, 2000);
+    firebase
+      .auth()
+      .sendPasswordResetEmail(this.state.emailAddress.toLowerCase())
+      .then(() => {this.setState({ formValid: true, showNotification: true, loadingVisible: false })})
+      .catch(() => {
+        this.setState({ formValid: false, showNotification: true, loadingVisible: false });
+      });   
   }
 
   toggleNextButtonState() {
@@ -152,6 +152,7 @@ export default class ForgotPassword extends Component {
               customStyle={{ marginBottom: 30 }}
               onChangeText={this.handleEmailChange}
               showCheckmark={validEmail}
+              autoFocus={true}
             />
           </ScrollView>
           <View style={styles.nextButton}>
