@@ -16,10 +16,24 @@ export default class ProfileContainer extends Component {
     super(props);
 
     this.handleSignOut = this.handleSignOut.bind(this);
+    this.sendNotification = this.sendNotification.bind(this);
   }
 
   handleSignOut() {
     firebase.auth().signOut();
+  }
+
+  sendNotification() {
+    let response = fetch('https://exp.host/--/api/v2/push/send', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: {
+        to: ''
+      }
+    })
   }
 
   render() {

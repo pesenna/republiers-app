@@ -5,6 +5,8 @@ import colors from "../styles/colors";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { NavigationActions } from "react-navigation";
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Permissions, Notifications } from "expo";
+import firebase from "firebase";
 
 const navigateToTabsAction = NavigationActions.navigate({
   routeName: "LoggedIn"
@@ -25,6 +27,10 @@ export default class TurnOnNotifications extends Component {
       pressedSkipButton: false
     };
 
+    this.handleNotifyButtonPress = this.handleNotifyButtonPress.bind(this);
+    this.registerForPushNotificationsAsync = this.registerForPushNotificationsAsync.bind(
+      this
+    );
     this.handleNotifyButtonShowUnderlay = this.handleNotifyButtonShowUnderlay.bind(
       this
     );
@@ -38,6 +44,41 @@ export default class TurnOnNotifications extends Component {
       this
     );
   }
+
+  async handleNotifyButtonPress() {
+    await this.registerForPushNotificationsAsync();
+    this.props.navigation.dispatch(navigateToTabsAction);
+  }
+
+  registerForPushNotificationsAsync = async () => {
+    const { status: existingStatus } = await Permissions.getAsync(
+      Permissions.NOTIFICATIONS
+    );
+
+    let finalStatus = existingStatus;
+
+    if (existingStatus !== "granted") {
+      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+      finalStatus = status;
+    }
+
+    if (finalStatus !== "granted") {
+      alert("denied");
+      return;
+    }
+
+    let token = await Notifications.getExpoPushTokenAsync();
+
+    try {
+      let currentUser = await firebase.auth().currentUser;
+      firebase
+        .database()
+        .ref("users/" + currentUser.uid + "/push_token")
+        .set(token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   handleNotifyButtonShowUnderlay() {
     this.setState({ pressedNotifyButton: true });
@@ -77,7 +118,7 @@ export default class TurnOnNotifications extends Component {
               },
               styles.button
             ]}
-            onPress={() => this.props.navigation.dispatch(navigateToTabsAction)}
+            onPress={this.handleNotifyButtonPress}
             underlayColor={colors.green02}
             onShowUnderlay={this.handleNotifyButtonShowUnderlay}
             onHideUnderlay={this.handleNotifyButtonHideUnderlay}
