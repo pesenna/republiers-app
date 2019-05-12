@@ -10,6 +10,8 @@ import Listings from "./explore/Listings";
 import categoriesList from "../../data/categories";
 import listings from "../../data/listings";
 
+import firebase from 'firebase';
+
 export default class ExploreContainer extends Component {
   static navigationOptions = {
     header: null,
@@ -29,6 +31,7 @@ export default class ExploreContainer extends Component {
     this.onCreateListClose = this.onCreateListClose.bind(this);
     this.renderListings = this.renderListings.bind(this);
     this.handleAddToFavorites = this.handleAddToFavorites.bind(this);
+    this.loadFavorites = this.loadFavorites.bind(this);
   }
 
   handleAddToFavorites(listing) {
@@ -45,6 +48,42 @@ export default class ExploreContainer extends Component {
         onCreateListClose: this.onCreateListClose
       });
     }
+  }
+
+  componentWillMount() {
+    this.loadFavorites();
+  }
+
+  loadFavorites() {
+    let { favouriteListings } = this.state;
+    let currentUser = firebase.auth().currentUser;
+
+    const databaseRef = "/users/" + currentUser.uid + "/favorites/";
+
+    firebase
+      .database()
+      .ref(databaseRef)
+      .once("value", snapshot => {
+        if (snapshot.exists()) {
+          let favorites = JSON.parse(JSON.stringify(snapshot));
+
+          console.log(JSON.stringify(favorites))
+
+          for(var favorite in favorites) {
+            let favName = JSON.parse(JSON.stringify(favorite));
+            let ids = JSON.stringify(favorites[favName].itemsId).replace(/[^0-9,]/g, "").split(",");
+
+            for(var id in ids) {
+              favouriteListings.push(parseInt(ids[id], 10));
+            }
+          }
+
+          console.log(favouriteListings);
+          this.setState({ favouriteListings });
+        }
+      });
+
+      return favouriteListings;
   }
 
   onCreateListClose(listingId, listCreated) {
