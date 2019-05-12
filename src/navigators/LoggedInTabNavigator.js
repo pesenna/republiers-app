@@ -4,7 +4,7 @@ import InboxContainer from "../screens/containers/InboxContainer";
 import ProfileContainer from "../screens/containers/ProfileContainer";
 import SavedContainer from "../screens/containers/SavedContainer";
 import TripsContainer from "../screens/containers/TripsContainer";
-import CreateList from "../screens/CreateList";
+import CreateList from "../screens/containers/explore/CreateList";
 import colors from "../styles/colors";
 
 export const ExploreTab = StackNavigator(
