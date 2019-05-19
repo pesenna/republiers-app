@@ -67,8 +67,6 @@ export default class ExploreContainer extends Component {
         if (snapshot.exists()) {
           let favorites = JSON.parse(JSON.stringify(snapshot));
 
-          console.log(JSON.stringify(favorites))
-
           for(var favorite in favorites) {
             let favName = JSON.parse(JSON.stringify(favorite));
             let ids = JSON.stringify(favorites[favName].itemsId).replace(/[^0-9,]/g, "").split(",");
@@ -78,7 +76,6 @@ export default class ExploreContainer extends Component {
             }
           }
 
-          console.log(favouriteListings);
           this.setState({ favouriteListings });
         }
       });
