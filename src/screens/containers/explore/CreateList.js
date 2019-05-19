@@ -8,13 +8,15 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
-import NavBarButton from "../components/buttons/NavBarButton";
-import colors from "../styles/colors";
-import { transparentHeaderStyle } from "../styles/navigation";
+import NavBarButton from "../../../components/buttons/NavBarButton";
+import colors from "../../../styles/colors";
+import { transparentHeaderStyle } from "../../../styles/navigation";
 
-import InputField from "../components/form/InputField";
-import RoundedButton from "../components/buttons/RoundedButton";
-import RadioInput from "../components/form/RadioInput";
+import InputField from "../../../components/form/InputField";
+import RoundedButton from "../../../components/buttons/RoundedButton";
+import RadioInput from "../../../components/form/RadioInput";
+
+import firebase from "firebase";
 
 export default class CreateList extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -60,16 +62,55 @@ export default class CreateList extends Component {
     this.setState({ privacyOption: privacyOption });
   }
 
-  handleCreateList() {
+  async handleCreateList() {
+    const { title } = this.state;
+    const { navigation } = this.props;
     const { goBack } = this.props.navigation;
+
     this.setState({ loading: true });
     this.listCreated = true;
 
-    setTimeout(() => {
-      this.setState({ loading: false }, () => {
-        goBack();
+    let currentUser = await firebase.auth().currentUser;
+
+    const databaseRef = "/users/" + currentUser.uid + "/favorites/" + title;
+    const newItemId = navigation.state.params.listing.id;
+
+    firebase
+      .database()
+      .ref(databaseRef + "/uid")
+      .once("value", snapshot => {
+        if (!snapshot.exists()) {
+          firebase
+            .database()
+            .ref(databaseRef)
+            .set({
+              uid: title,
+              itemsId: newItemId
+            });
+        } else {
+          firebase
+            .database()
+            .ref(databaseRef + "/itemsId")
+            .once("value", itemsSnapshot => {
+              let existingItems = JSON.stringify(itemsSnapshot);
+
+              existingItems = existingItems.replace(/[^0-9,]/g, "");
+
+              if (!existingItems.includes(newItemId)) {
+                firebase
+                  .database()
+                  .ref(databaseRef)
+                  .set({
+                    uid: title,
+                    itemsId: existingItems + "," + newItemId
+                  });
+              }
+            });
+        }
       });
-    }, 2000);
+
+    this.setState({ loading: false });
+    goBack();
   }
 
   render() {
