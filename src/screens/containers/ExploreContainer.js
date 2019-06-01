@@ -8,7 +8,6 @@ import Categories from "./explore/Categories";
 import Listings from "./explore/Listings";
 
 import categoriesList from "../../data/categories";
-import listings from "../../data/listings";
 
 import firebase from 'firebase';
 
@@ -25,12 +24,14 @@ export default class ExploreContainer extends Component {
     super(props);
 
     this.state = {
+      listings: [],
       favouriteListings: []
     };
 
     this.onCreateListClose = this.onCreateListClose.bind(this);
     this.renderListings = this.renderListings.bind(this);
     this.handleAddToFavorites = this.handleAddToFavorites.bind(this);
+    this.loadRepublics = this.loadRepublics.bind(this);
     this.loadFavorites = this.loadFavorites.bind(this);
   }
 
@@ -51,7 +52,47 @@ export default class ExploreContainer extends Component {
   }
 
   componentWillMount() {
+    this.loadRepublics();
     this.loadFavorites();
+  }
+
+  loadRepublics() {
+    let { listings } = this.state;
+
+    firebase
+      .database()
+      .ref("/republics")
+      .once("value", snapshot => {
+        if(snapshot.exists()) {
+          let republics = JSON.parse(JSON.stringify(snapshot));
+
+          for(var republic in republics) {
+            let tempId = JSON.parse(JSON.stringify(republic));
+            let republicFirstNode = JSON.parse(JSON.stringify(republics[tempId]));
+            let republicList = JSON.parse(JSON.stringify(republicFirstNode));
+            
+            for(var item in republicList){
+              let republicId  = JSON.parse(JSON.stringify(item));
+              let republicItem = JSON.parse(JSON.stringify(republicList[republicId]));
+
+              let listingList = [];
+
+              for(var listing in republicItem.listings){
+                let listingId = JSON.parse(JSON.stringify(listing));
+                let listingItem = JSON.parse(JSON.stringify(republicItem.listings[listingId]));
+
+                listingList.push(listingItem);
+              }
+
+              republicItem.listings = listingList;
+
+              listings.push(republicItem);
+            }
+
+            this.setState(listings);
+          }
+        }
+      });
   }
 
   loadFavorites() {
@@ -96,6 +137,8 @@ export default class ExploreContainer extends Component {
   }
 
   renderListings() {
+    let { listings } = this.state;
+
     return listings.map((listing, index) => {
       return (
         <View key={`listing-${index}`}>

@@ -67,7 +67,8 @@ export default class Listing extends Component {
             <Image
               style={styles.image}
               resizeMode="contain"
-              source={listing.photo}
+              source={{uri: listing.photo}}
+              resizeMode='center'
             />
 
             <Text style={[{ color: this.randomColor }, styles.listingType]}>
