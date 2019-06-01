@@ -1,0 +1,194 @@
+[[
+  {
+    "title": "Experiences",
+    "boldTitle": false,
+    "showAddToFavorites": true,
+    "listings": [
+      {
+        "id": 1,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "BOAT RIDE",
+        "title": "Sail past Japan's largest port with a certified skipper",
+        "location": "Tokyo, Japan",
+        "price": 60,
+        "priceType": "per person",
+        "stars": 29,
+        "color": "#484848"
+      },
+      {
+        "id": 2,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "CHEESE TASTING",
+        "title": "Funny cheesemonger takes you on a Tour de Fromage",
+        "location": "Paris, France",
+        "price": 70,
+        "priceType": "per person",
+        "stars": 4,
+        "color": "#d93900"
+      },
+      {
+        "id": 3,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "BIKE RIDE",
+        "title": "Cycling, \"KFC\" & Drinking for your Seoul",
+        "location": "Seoul, South Korea",
+        "price": 47,
+        "priceType": "per person",
+        "stars": 30,
+        "color": "#000000"
+      },
+      {
+        "id": 4,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "BIKE RIDE",
+        "title": "Cycle through side streets with a local",
+        "location": "Amsterdam, Netherlands",
+        "price": 57,
+        "priceType": "per person",
+        "stars": 70,
+        "color": "#ad8763"
+      },
+      {
+        "id": 5,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "SURFING",
+        "title": "Surf Bondi's waves, then eat & drink like a local",
+        "location": "Sydney, Australia",
+        "price": 61,
+        "priceType": "per person",
+        "stars": 66,
+        "color": "#4995cd"
+      },
+      {
+        "id": 6,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "DRAWING CLASS",
+        "title": "A drawing/walking tour in Montmartre",
+        "location": "Paris, France",
+        "price": 55,
+        "priceType": "per person",
+        "stars": 15,
+        "color": "#7d4918"
+      }
+    ]
+  },
+  {
+    "title": "Homes",
+    "boldTitle": false,
+    "showAddToFavorites": true,
+    "listings": [
+      {
+        "id": 7,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "ENTIRE HOUSE - 1 BED",
+        "title": "BALIAN TREEHOUSE with beautiful pool",
+        "location": "Bali, Indonesia",
+        "price": 72,
+        "priceType": "per night",
+        "stars": 101,
+        "color": "#008388"
+      },
+      {
+        "id": 8,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "ENTIRE VILLA - 3 BEDS",
+        "title": "Casa de Rio - Beach and Mountains",
+        "location": "Secarias, Portugal",
+        "price": 69,
+        "priceType": "per night",
+        "stars": 119,
+        "color": "#ad8763"
+      },
+      {
+        "id": 9,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "ENTIRE HOUSE - 1 BED",
+        "title": "Cozy A-Frame Cabin in the Redwoods",
+        "location": "Cazadero, United States",
+        "price": 152,
+        "priceType": "per night",
+        "stars": 320,
+        "color": "#d93900"
+      },
+      {
+        "id": 10,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "ENTIRE GUESTHOUSE - 1 BED",
+        "title": "1880s Carriage House in Curtis Park",
+        "location": "Denver, United States",
+        "price": 116,
+        "priceType": "per night",
+        "stars": 300,
+        "color": "#484848"
+      },
+      {
+        "id": 11,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "ENTIRE BOAT - 2 BEDS",
+        "title": "A Pirate's Life for Me Houseboar!",
+        "location": "Charleston, United States",
+        "price": 182,
+        "priceType": "per night",
+        "stars": 132,
+        "color": "#008388"
+      }
+    ]
+  },
+  {
+    "title": "Popular Reservations",
+    "boldTitle": true,
+    "showAddToFavorites": false,
+    "listings": [
+      {
+        "id": 12,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "RESERVATION",
+        "title": "G'raj Mahal",
+        "price": "30",
+        "priceType": "per person",
+        "stars": 0,
+        "color": "#4995cd"
+      },
+      {
+        "id": 13,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "RESERVATION",
+        "title": "Le Fond",
+        "price": "30",
+        "priceType": "per person",
+        "stars": 0,
+        "color": "#000000"
+      },
+      {
+        "id": 14,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "RESERVATION",
+        "title": "The Glass Onion",
+        "price": "34",
+        "priceType": "per person",
+        "stars": 0,
+        "color": "#ad8763"
+      },
+      {
+        "id": 15,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "RESERVATION",
+        "title": "The Waiting Room",
+        "price": "34",
+        "priceType": "per person",
+        "stars": 0,
+        "color": "#008388"
+      },
+      {
+        "id": 16,
+        "photo": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&ved=2ahUKEwjmo47Bu8jiAhVdLLkGHe18CXsQjRx6BAgBEAU&url=https%3A%2F%2Funsplash.com%2Fphotos%2F2d4lAQAlbDA&psig=AOvVaw2qqYxeeDLunJF4ufeRkjBN&ust=1559484738188237",
+        "type": "RESERVATION",
+        "title": "Bar Boulud",
+        "price": "46",
+        "priceType": "per person",
+        "stars": 0,
+        "color": "#484848"
+      }
+    ]
+  }
+]]
