@@ -2,24 +2,34 @@ import React, { Component } from "react";
 import colors from "../styles/colors";
 import Icon from "react-native-vector-icons/Ionicons";
 import { View, Text, StyleSheet } from "react-native";
+import { PropTypes } from "prop-types";
+import AnimatedHideView from "react-native-animated-hide-view";
 
 export default class SearchBar extends Component {
   render() {
+    let { visible } = this.props;
+
     return (
-      <View style={styles.wrapper}>
-        <View style={styles.searchContainer}>
-          <Icon
-            name="ios-search"
-            size={20}
-            color={colors.gray02}
-            style={styles.searchIcon}
-          />
-          <Text style={styles.textInput}>Try "IFSP"</Text>
+      <AnimatedHideView visible={visible}>
+        <View style={styles.wrapper}>
+          <View style={styles.searchContainer}>
+            <Icon
+              name="ios-search"
+              size={20}
+              color={colors.gray02}
+              style={styles.searchIcon}
+            />
+            <Text style={styles.textInput}>Try "IFSP"</Text>
+          </View>
         </View>
-      </View>
+      </AnimatedHideView>
     );
   }
 }
+
+SearchBar.propTypes = {
+  visible: PropTypes.bool.isRequired
+};
 
 const styles = StyleSheet.create({
   wrapper: {

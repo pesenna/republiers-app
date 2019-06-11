@@ -21,6 +21,10 @@ export default class Listing extends Component {
     this.renderListings = this.renderListings.bind(this);
   }
 
+  componentWillMount(){
+    this.allImages = {};
+  }
+
   get randomColor() {
     const colorsList = [
       colors.gray04,
@@ -40,6 +44,7 @@ export default class Listing extends Component {
       listings,
       showAddToFavorites,
       handleAddToFavorites,
+      handleClick,
       favouriteListings
     } = this.props;
 
@@ -49,6 +54,7 @@ export default class Listing extends Component {
           style={styles.card}
           key={`listing-${index}`}
           activeOpacity={0.7}
+          onPress={() => handleClick(listing, this.allImages[index])}
         >
           <View>
             {showAddToFavorites ? (
@@ -69,6 +75,7 @@ export default class Listing extends Component {
               resizeMode="contain"
               source={{uri: listing.photo}}
               resizeMode='center'
+              ref={image => (this.allImages[index] = image)}
             />
 
             <Text style={[{ color: this.randomColor }, styles.listingType]}>
@@ -127,6 +134,7 @@ Listing.propTypes = {
   listings: PropTypes.array.isRequired,
   showAddToFavorites: PropTypes.bool,
   handleAddToFavorites: PropTypes.func,
+  handleClick: PropTypes.func,
   favouriteListings: PropTypes.array
 };
 
