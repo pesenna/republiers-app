@@ -17,6 +17,7 @@ import Listings from "./explore/Listings";
 import categoriesList from "../../data/categories";
 
 import firebase from "firebase";
+import FontAwesomeIcon from "react-native-vector-icons/FontAwesome";
 
 export default class ExploreContainer extends Component {
   static navigationOptions = {
@@ -323,15 +324,15 @@ export default class ExploreContainer extends Component {
           >
             <Animated.View
               style={[
-                { position: "absolute", top: 100, right: 30 },
+                { position: "absolute", top: 50, right: 30 },
                 animatedCrossOpacity
               ]}
             >
-              <Text
-                style={{ fontSize: 24, fontWeight: "bold", color: "white" }}
-              >
-                X
-              </Text>
+              <FontAwesomeIcon
+                name="times-circle"
+                color={colors.white}
+                size={30}
+              />
             </Animated.View>
           </TouchableWithoutFeedback>
         </View>
@@ -369,7 +370,7 @@ export default class ExploreContainer extends Component {
 
     return (
       <View style={styles.wrapper}>
-        <SearchBar visible={ activeImageUrl ? false : true }/>
+        <SearchBar visible={activeImageUrl ? false : true} />
         <ScrollView
           style={styles.scrollView}
           contentContainerStyle={styles.scrollViewContent}
